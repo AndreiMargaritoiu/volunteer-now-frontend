@@ -9,6 +9,8 @@ import {
 import MainComponent from './Components/MainComponent';
 import DonationComponent from "./Components/Donations/DonationComponent";
 import UserEditComponent from "./Components/UserEdit/UserEditComponent";
+import RegisterComponent from "./Components/Register/RegisterComponent";
+
 
 function App() {
 
@@ -24,6 +26,7 @@ function App() {
         <Route exact path = "/" component={MainComponent} />
         <Route exact path = "/donations" component ={DonationComponent}/>
         <Route exact path = "/userEdit" component ={UserEditComponent}/>
+        <Route exact path = "/register" component ={RegisterComponent}/>
       </Switch>
       {defaultRoute}
     </Router>
