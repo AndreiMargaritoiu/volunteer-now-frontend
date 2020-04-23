@@ -30,16 +30,16 @@ class RegisterComponent extends React.Component {
                         if(user.email == email) {
                             ok = false;
                         }
-                    });    
-                });
-                if (ok === true) {
-                    axiosInstance.post(REGISTER_API_ENDPOINT, {
-                        "LastName" : lastname, "FirstName" : firstname, "Email" : email,"Telephone" : telephone, 
-                        "Address" : address, "Type" : type, "Password" : btoa(password), "ObjectId" : myArray
-                    })
-                } else {
-                    alert("User already exists");
-                }       
+                    });  
+                    if (ok === true) {
+                        axiosInstance.post(REGISTER_API_ENDPOINT, {
+                            "LastName" : lastname, "FirstName" : firstname, "Email" : email,"Telephone" : telephone, 
+                            "Address" : address, "Type" : type, "Password" : btoa(password), "ObjectId" : myArray
+                        })
+                    } else {
+                        alert("User already exists");
+                    }   
+                });         
             } else {
                 alert("Passwords dont match");
             }
