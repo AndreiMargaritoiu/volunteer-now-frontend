@@ -20,22 +20,32 @@ class RegisterComponent extends React.Component {
     }
 
     createUser = () => {
-        if ((lastname !== "") && (firstname !== "") && (email !== "") && (telephone !== "")
-            && (address !== "") && (password !== "")){
-                if (password === passwordcheck) {
-                    var e = document.getElementById("myList");
-                    type = e.options[e.selectedIndex].value;
+        if ((lastname !== "") && (firstname !== "") && (email !== "") && (telephone !== "") && (address !== "") && (password !== "")){
+            if (password === passwordcheck) {
+                var e = document.getElementById("myList");
+                type = e.options[e.selectedIndex].value;
+                var ok = true;
+                axiosInstance.get(REGISTER_API_ENDPOINT).then(response => {
+                    response.data.forEach(user => {
+                        if(user.email == email) {
+                            ok = false;
+                        }
+                    });    
+                });
+                if (ok === true) {
                     axiosInstance.post(REGISTER_API_ENDPOINT, {
-                        "LastName" : lastname, "FirstName" : firstname, "Email" : email,
-                        "Telephone" : telephone, "Address" : address, "Type" : type, 
-                        "Password" : btoa(password), "ObjectId" : myArray
-                     })
+                        "LastName" : lastname, "FirstName" : firstname, "Email" : email,"Telephone" : telephone, 
+                        "Address" : address, "Type" : type, "Password" : btoa(password), "ObjectId" : myArray
+                    })
                 } else {
-                    alert("Passwords dont match");
-                }
+                    alert("User already exists");
+                }       
             } else {
-                alert("Cant have empty fields");
+                alert("Passwords dont match");
             }
+        } else {
+            alert("Cant have empty fields");
+        }
     }
 
     getLastName = (event) => {
