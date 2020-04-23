@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import MainComponent from './Components/MainComponent';
 import DonationComponent from "./Components/Donations/DonationComponent";
+import UserEditComponent from "./Components/UserEdit/UserEditComponent";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
       <Switch>
         <Route exact path = "/" component={MainComponent} />
         <Route exact path = "/donations" component ={DonationComponent}/>
+        <Route exact path = "/userEdit" component ={UserEditComponent}/>
       </Switch>
       {defaultRoute}
     </Router>
