@@ -2,6 +2,7 @@ import React from "react"
 import axiosInstance from "../../Axios/Axios"
 import { REGISTER_API_ENDPOINT } from "../../Utils/utils"
 import { Typography, Divider, TextField, Button } from "@material-ui/core"
+import sha256 from 'crypto-js/sha256'
 
 let lastname = "";
 let firstname = "";
@@ -37,7 +38,7 @@ class RegisterComponent extends React.Component {
                     axiosInstance.post(REGISTER_API_ENDPOINT, {
                         "LastName" : lastname, "FirstName" : firstname, "Email" : email,
                         "Telephone" : telephone, "Address" : address, "Type" : type, 
-                        "Password" : password, "ObjectId" : myArray
+                        "Password" : btoa(password), "ObjectId" : myArray
                      })
                 } else {
 
@@ -45,6 +46,10 @@ class RegisterComponent extends React.Component {
             } else {
                 
             }
+    }
+
+    hash (algo, str) {
+        return crypto.subtle.digest(algo, new TextEncoder().encode(str));
     }
 
     getLastName = (event) => {
@@ -91,7 +96,7 @@ class RegisterComponent extends React.Component {
                 <br></br>
                 <TextField id="outlined-basic" label="Email" variant="outlined" onChange={this.getEmail}/>
                 <br></br>
-                <TextField id="outlined-basic" label="Telephone" variant="outlined" onChange={this.getTelephone}/>
+                <TextField type="number" id="outlined-basic" label="Telephone" variant="outlined" onChange={this.getTelephone}/>
                 <br></br>
                 <TextField id="outlined-basic" label="Address" variant="outlined" onChange={this.getAddress}/>
                 <br></br>
