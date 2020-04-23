@@ -10,6 +10,8 @@ class LoginComponent extends React.Component {
 
     constructor(props) {
         super(props)
+        
+        
       
     }
 
@@ -18,11 +20,23 @@ class LoginComponent extends React.Component {
     /**GET */
     login = () => {
         axiosInstance.get(LOGIN_API_ENDPOINT).then(response => {
-            this.setState({
-                donations: response.data
-            })
-        });
-    }
+           
+            response.data.forEach(user => {
+                if(user.email == email && user.password == password)
+                    {
+                        alert("Cialut "+ user.name);
+
+                    }
+                else 
+                {
+                    alert("pleak!");
+                }
+            });
+
+
+    });
+}
+
 
     /** HELPER FUNCTIONS */
     getEmail = (event) => {
