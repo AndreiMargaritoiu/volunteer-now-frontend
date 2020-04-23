@@ -38,10 +38,6 @@ class RegisterComponent extends React.Component {
             }
     }
 
-    hash (algo, str) {
-        return crypto.subtle.digest(algo, new TextEncoder().encode(str));
-    }
-
     getLastName = (event) => {
         lastname = event.target.value;
     }
