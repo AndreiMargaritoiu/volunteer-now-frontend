@@ -1,0 +1,37 @@
+body {
+  background: url("C:\\Users\\arina\\Desktop\\II_PROIECT\\FRONT_END\\II_2020_Frontend\\front_end\\src\\Images\\homepage.png")
+    no-repeat center center fixed;
+  background-size: cover;
+  /* background: cover; */
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+div.buttonDiv {
+  margin: 0;
+  position: absolute;
+  top: 80%;
+  left: 42%;
+  
+  height: 200px;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+h1 {
+  font-family: "Six Caps";
+  font-size: 150px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 200;
+  line-height: 26.4px;
+}
+div.title {
+  margin: 0;
+  position: absolute;
+  left: 37%;
+  top: 17%;
+  
+  
+}
