@@ -24,22 +24,15 @@ class RegisterComponent extends React.Component {
             if (password === passwordcheck) {
                 var e = document.getElementById("myList");
                 type = e.options[e.selectedIndex].value;
-                var ok = true;
-                axiosInstance.get(REGISTER_API_ENDPOINT).then(response => {
-                    response.data.forEach(user => {
-                        if(user.email == email) {
-                            ok = false;
-                        }
-                    });  
-                    if (ok === true) {
-                        axiosInstance.post(REGISTER_API_ENDPOINT, {
-                            "LastName" : lastname, "FirstName" : firstname, "Email" : email,"Telephone" : telephone, 
-                            "Address" : address, "Type" : type, "Password" : btoa(password), "ObjectId" : myArray
-                        })
-                    } else {
-                        alert("User already exists");
-                    }   
-                });         
+                axiosInstance.post(REGISTER_API_ENDPOINT, {
+                    "LastName" : lastname, "FirstName" : firstname, "Email" : email,"Telephone" : telephone, 
+                    "Address" : address, "Type" : type, "Password" : btoa(password), "ObjectId" : myArray
+                }).then((response) => {
+                    alert("User created successfully");
+                  })
+                  .catch ((error) => {
+                    alert("User already exists");
+                  });         
             } else {
                 alert("Passwords dont match");
             }
