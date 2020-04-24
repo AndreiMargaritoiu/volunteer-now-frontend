@@ -2,7 +2,6 @@ import React from "react"
 import axiosInstance from "../../Axios/Axios"
 import { REGISTER_API_ENDPOINT } from "../../Utils/utils"
 import { Typography, Divider, TextField, Button } from "@material-ui/core"
-import sha256 from 'crypto-js/sha256'
 
 let lastname = "";
 let firstname = "";
@@ -18,38 +17,28 @@ class RegisterComponent extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-            users: [{
-                "lastname": "default",
-                "firstname": "default",
-                "email": "default",
-                "telephone": "default",
-                "address": "default",
-                "type": "default",
-                "password": "default"
-            }]
-        }
     }
 
     createUser = () => {
-        if ((lastname !== "") && (firstname !== "") && (email !== "") && (telephone !== "")
-            && (address !== "") && (type !== "") && (password !== "")){
-                if (password == passwordcheck) {
-                    axiosInstance.post(REGISTER_API_ENDPOINT, {
-                        "LastName" : lastname, "FirstName" : firstname, "Email" : email,
-                        "Telephone" : telephone, "Address" : address, "Type" : type, 
-                        "Password" : btoa(password), "ObjectId" : myArray
-                     })
-                } else {
-
-                }
+        if ((lastname !== "") && (firstname !== "") && (email !== "") && (telephone !== "") && (address !== "") && (password !== "")){
+            if (password === passwordcheck) {
+                var e = document.getElementById("myList");
+                type = e.options[e.selectedIndex].value;
+                axiosInstance.post(REGISTER_API_ENDPOINT, {
+                    "LastName" : lastname, "FirstName" : firstname, "Email" : email,"Telephone" : telephone, 
+                    "Address" : address, "Type" : type, "Password" : btoa(password), "ObjectId" : myArray
+                }).then((response) => {
+                    alert("User created successfully");
+                  })
+                  .catch ((error) => {
+                    alert("User already exists");
+                  });         
             } else {
-                
+                alert("Passwords dont match");
             }
-    }
-
-    hash (algo, str) {
-        return crypto.subtle.digest(algo, new TextEncoder().encode(str));
+        } else {
+            alert("Cant have empty fields");
+        }
     }
 
     getLastName = (event) => {
@@ -70,10 +59,6 @@ class RegisterComponent extends React.Component {
 
     getAddress = (event) => {
         address = event.target.value;
-    }
-
-    getType = (event) => {
-        type = event.target.value;
     }
 
     getPassword = (event) => {
@@ -100,7 +85,11 @@ class RegisterComponent extends React.Component {
                 <br></br>
                 <TextField id="outlined-basic" label="Address" variant="outlined" onChange={this.getAddress}/>
                 <br></br>
-                <TextField id="outlined-basic" label="Type" variant="outlined" onChange={this.getType}/>
+                <label>Select list: </label>
+                    <select id = "myList">
+                        <option value = "nevoias">nevoias</option>
+                        <option value = "volunteer">volunteer</option>
+                    </select>
                 <br></br>
                 <TextField type="password" id="outlined-basic" label="Password" variant="outlined" onChange={this.getPassword}/>
                 <br></br>
