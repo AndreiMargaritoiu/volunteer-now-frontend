@@ -9,36 +9,28 @@ let password = "";
 class LoginComponent extends React.Component {
 
     constructor(props) {
-        super(props)
-        
-        
-      
+        super(props) 
     }
 
-
-
-    /**GET */
     login = () => {
-        axiosInstance.get(LOGIN_API_ENDPOINT).then(response => {
-           
-            response.data.forEach(user => {
-                if(user.email == email && user.password == password)
-                    {
-                        alert("Cialut "+ user.name);
-
-                    }
-                else 
-                {
-                    alert("pleak!");
+        if((email !== "") && (password !== "")){
+            axiosInstance.get(LOGIN_API_ENDPOINT, {
+                params: {
+                  Email: email,
+                  Password: password
                 }
-            });
+              }).then(response => {
 
-
-    });
+                alert(response.data);
+    
+        }).catch ((error) => {
+    
+           alert(error);
+            
+        });
+        }
 }
 
-
-    /** HELPER FUNCTIONS */
     getEmail = (event) => {
         email = event.target.value;
     }
@@ -46,8 +38,6 @@ class LoginComponent extends React.Component {
     getPassword = (event) => {
         password = event.target.value;
     }
-
-
 
     render() {
         return (
@@ -57,12 +47,9 @@ class LoginComponent extends React.Component {
                 <TextField id="outlined-basic" label="Email" variant="outlined" onChange={this.getEmail} />
                 <TextField id="outlined-basic" label="Password" variant="outlined" onChange={this.getPassword} />
                 <Button onClick={this.login}>Login</Button>
-
-
-            </React.Fragment>
+             </React.Fragment>
         )
     }
-
 }
 
 export default LoginComponent
