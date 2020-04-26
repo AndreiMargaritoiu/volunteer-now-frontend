@@ -21,7 +21,7 @@ class LoginComponent extends React.Component {
                 }
               }).then(response => {
 
-                alert(response.data);
+                alert("plm");
     
         }).catch ((error) => {
     
