@@ -12,16 +12,25 @@ class LoginComponent extends React.Component {
         super(props) 
     }
 
+    state = {
+        redirect: false
+      }
+
     login = () => {
         if((email !== "") && (password !== "")){
-            axiosInstance.get(LOGIN_API_ENDPOINT, {
-                params: {
-                  Email: email,
-                  Password: password
-                }
-              }).then(response => {
+            axiosInstance.post(LOGIN_API_ENDPOINT, {"Email" : email, "Password" : btoa(password)
+            }).then( response => {
 
-                alert("plm");
+                if(response.data == "user not found") 
+                    {
+                    alert("User does not exist!");
+                    this.setRedirect();
+                    }
+
+                else if (response.data == "wrong password")
+                    alert("Wrong password!");
+
+                else alert("User " + response.data + " logged in successfully");
     
         }).catch ((error) => {
     
@@ -30,6 +39,12 @@ class LoginComponent extends React.Component {
         });
         }
 }
+
+    setRedirect = () => {
+        this.setState({
+        redirect: true
+        })
+    }
 
     getEmail = (event) => {
         email = event.target.value;
@@ -40,16 +55,24 @@ class LoginComponent extends React.Component {
     }
 
     render() {
-        return (
-            <React.Fragment>
-                <Typography variant="h4">Login form</Typography>
-                <Divider></Divider>
-                <TextField id="outlined-basic" label="Email" variant="outlined" onChange={this.getEmail} />
-                <TextField id="outlined-basic" label="Password" variant="outlined" onChange={this.getPassword} />
-                <Button onClick={this.login}>Login</Button>
-             </React.Fragment>
-        )
-    }
+            return (
+                <React.Fragment>
+                    <Typography variant="h4">Login form</Typography>
+                    <Divider></Divider>
+                    <TextField id="outlined-basic" label="Email" variant="outlined" onChange={this.getEmail} />
+                    <TextField id="outlined-basic" label="Password" variant="outlined" onChange={this.getPassword} />
+                    <Button onClick={this.login}>Login</Button>
+                    {
+                        this.state.redirect ? (
+                        <div>
+                        <Button onClick={() => this.props.history.push('register')}>Redirect to Register page.</Button>
+                        </div>
+                    ) : null
+                    }
+                 </React.Fragment>
+            )
+        }
+    
 }
 
 export default LoginComponent
