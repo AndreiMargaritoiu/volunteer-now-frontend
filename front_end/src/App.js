@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import MainComponent from './Components/MainComponent';
 import DonationComponent from "./Components/Donations/DonationComponent";
+import LoginComponent from "./Components/Login/LoginComponent";
 import RegisterComponent from "./Components/Register/RegisterComponent";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <Switch>
         <Route exact path = "/" component={MainComponent} />
         <Route exact path = "/donations" component ={DonationComponent}/>
+        <Route exact path = "/login" component ={LoginComponent}/>
         <Route exact path = "/register" component ={RegisterComponent}/>
       </Switch>
       {defaultRoute}
