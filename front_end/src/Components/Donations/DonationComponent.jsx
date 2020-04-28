@@ -71,7 +71,8 @@ class DonationComponent extends React.Component {
     }
 
 
-    render() {
+    render() {  
+       
         return (
             <React.Fragment>
 
