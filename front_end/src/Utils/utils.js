@@ -5,7 +5,7 @@ export const DONATIONS_API_ENDPOINT = "api/donations"
 
 export const LOGIN_API_ENDPOINT = "api/users/Login"
 
-export const REGISTER_API_ENDPOINT = "api/users"
+export const REGISTER_API_ENDPOINT = "api/users/Register"
 
 
 
