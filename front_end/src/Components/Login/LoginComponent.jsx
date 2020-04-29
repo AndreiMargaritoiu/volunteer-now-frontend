@@ -3,8 +3,8 @@ import axiosInstance from "../../Axios/Axios"
 import { LOGIN_API_ENDPOINT } from "../../Utils/utils"
 import { Typography, TextField, Button, Grid, Link, Container, withStyles, Avatar } from "@material-ui/core"
 import { loginStyles } from "./LoginStyles";
-import { serialize, deserialize } from "react-serialize"
 import base64 from 'react-native-base64'
+
 
 
 let email = "";
@@ -27,9 +27,9 @@ class LoginComponent extends React.Component {
                 "Email": email, "Password": btoa(password)
             }).then(response => {
                 this.setState({
-                    user: base64.decode(response.data)
+                    user: JSON.parse(base64.decode(response.data))
                 })
-alert(this.state.user["Error"])
+
                 if (this.state.user["Error"] === "user not found") {
                     alert("User does not exist!");
                     this.setRedirect();
