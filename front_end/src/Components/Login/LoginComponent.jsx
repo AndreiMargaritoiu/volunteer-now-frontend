@@ -3,6 +3,9 @@ import axiosInstance from "../../Axios/Axios"
 import { LOGIN_API_ENDPOINT } from "../../Utils/utils"
 import { Typography, TextField, Button, Grid, Link, Container, withStyles, Avatar } from "@material-ui/core"
 import { loginStyles } from "./LoginStyles";
+import { serialize, deserialize } from "react-serialize"
+import base64 from 'react-native-base64'
+
 
 let email = "";
 let password = "";
@@ -14,31 +17,30 @@ class LoginComponent extends React.Component {
         this.state = {
             redirect: false,
             user: [{
-                "Error": ""
+                "title":"default"                
             }]
         }
     }
 
     login = () => {
-        if ((email !== "") && (password !== "")) {
             axiosInstance.post(LOGIN_API_ENDPOINT, {
                 "Email": email, "Password": btoa(password)
             }).then(response => {
-                this.setState{
-                    user: response.data;
-                }
-
-                if (user.Error == "user not found") {
+                this.setState({
+                    user: base64.decode(response.data)
+                })
+alert(this.state.user["Error"])
+                if (this.state.user["Error"] === "user not found") {
                     alert("User does not exist!");
                     this.setRedirect();
                 }
 
-                else if (user.Error == "wrong password")
+                else if (this.state.user["Error"] === "wrong password")
                     alert("Wrong password!");
                 
                 else {
 
-                    const user = user.Firstname + " " + user.Lastname;
+                    const user = this.state.user.Firstname + " " + this.state.user.Lastname;
                     alert("User " + user + " logged in successfully");
 
                 }
@@ -48,7 +50,7 @@ class LoginComponent extends React.Component {
                 alert(error);
 
             });
-        }
+        
     }
 
     setRedirect = () => {
