@@ -12,7 +12,10 @@ class LoginComponent extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            redirect: false
+            redirect: false,
+            user: [{
+                "Error": ""
+            }]
         }
     }
 
@@ -21,16 +24,24 @@ class LoginComponent extends React.Component {
             axiosInstance.post(LOGIN_API_ENDPOINT, {
                 "Email": email, "Password": btoa(password)
             }).then(response => {
+                this.setState{
+                    user: response.data;
+                }
 
-                if (response.data == "user not found") {
+                if (user.Error == "user not found") {
                     alert("User does not exist!");
                     this.setRedirect();
                 }
 
-                else if (response.data == "wrong password")
+                else if (user.Error == "wrong password")
                     alert("Wrong password!");
+                
+                else {
 
-                else alert("User " + response.data + " logged in successfully");
+                    const user = user.Firstname + " " + user.Lastname;
+                    alert("User " + user + " logged in successfully");
+
+                }
 
             }).catch((error) => {
 
