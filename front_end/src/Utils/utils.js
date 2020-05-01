@@ -7,5 +7,8 @@ export const LOGIN_API_ENDPOINT = "api/users/Login"
 
 export const REGISTER_API_ENDPOINT = "api/users/Register"
 
+export const NEEDS_API_ENDPOINT = "api/needs"
 
+export const USER_EDIT_API_ENDPOINT = "api/users/updateUser"
 
+export const USER_DATA_API_ENDPOINT = "api/users/getUser"

@@ -2,7 +2,7 @@ import React from "react"
 import { withStyles, Container, Typography, Paper } from "@material-ui/core";
 import { dashboardContentStyles } from "./DashboardContentStyles";
 import DonationComponent from "../../Donations/DonationComponent";
-
+import NeedsComponent from "../../Needs/NeedsComponent";
 
 class DashboardContentComponent extends React.Component {
 
@@ -12,7 +12,7 @@ class DashboardContentComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            layout1: false
+            layout1: true
         }
 
     }
@@ -28,7 +28,7 @@ class DashboardContentComponent extends React.Component {
                         <Container className={classes.marginContainer}>
                             {/* EXAMPLE TO SHOW HOW YOU CAN RENDER A COMPONENT */}
                             <Paper className={classes.paper}>
-                                <DonationComponent></DonationComponent>
+                                <NeedsComponent></NeedsComponent>
                             </Paper>
                         </Container>
                     </React.Fragment>
@@ -45,7 +45,7 @@ class DashboardContentComponent extends React.Component {
                             </Paper>
                         </Container>
                     </React.Fragment>
-
+                    
                 }
             </React.Fragment>
         );
