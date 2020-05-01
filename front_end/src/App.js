@@ -8,7 +8,12 @@ import {
 } from "react-router-dom";
 import MainComponent from './Components/MainComponent';
 import DonationComponent from "./Components/Donations/DonationComponent";
+
 import Homepage from './Components/Homepage/Homepage';
+import LoginComponent from "./Components/Login/LoginComponent";
+import RegisterComponent from "./Components/Register/RegisterComponent";
+import DashboardComponent from './Components/Dashboard/DashboardComponent';
+
 
 function App() {
 
@@ -23,7 +28,13 @@ function App() {
       <Switch>
         <Route exact path = "/" component={MainComponent} />
         <Route exact path = "/donations" component ={DonationComponent}/>
+
         <Route exact path = "/homepage" component = {Homepage}/>
+
+        <Route exact path = "/login" component ={LoginComponent}/>
+        <Route exact path = "/register" component ={RegisterComponent}/>
+        <Route exact path = "/dashboard" component ={DashboardComponent}/>
+
       </Switch>
       {defaultRoute}
     </Router>
