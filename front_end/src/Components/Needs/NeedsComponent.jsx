@@ -7,8 +7,6 @@ import NeedsCardNevoias from "./NeedsCardNevoias"
 
 let title = "";
 let description = "";
-const page = (localStorage.getItem("userType") === "volunteer") ? true : false;
-const uid = localStorage.getItem("authToken");
 
 class NeedsComponent extends React.Component {
 
@@ -23,19 +21,20 @@ class NeedsComponent extends React.Component {
     }
 
     componentDidMount() {
+        this.page = (localStorage.getItem("userType") === "volunteer") ? true : false;
+        this.uid = localStorage.getItem("authToken");
         this.refreshCards()
     }
    
     refreshCards = () => {
-
-        if (page) {
+        if (this.page) {
             axiosInstance.get(NEEDS_API_ENDPOINT).then(response => {
                 this.setState({
                     needs: response.data
                 })
             });
         } else {
-            axiosInstance.get(NEEDS_API_ENDPOINT + "/" + uid).then(response => {
+            axiosInstance.get(NEEDS_API_ENDPOINT + "/" + this.uid).then(response => {
                 this.setState({
                     needs: response.data
                 })
@@ -59,7 +58,7 @@ class NeedsComponent extends React.Component {
     }
 
     render() {  
-        if (page) {
+        if (this.page) {
             return (
                 <React.Fragment>
                     <Typography variant="h4">Volunteer dashboard</Typography>
