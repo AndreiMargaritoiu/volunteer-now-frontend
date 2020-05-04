@@ -1,7 +1,9 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 
 const NeedsCardVolunteer = props => {
@@ -23,6 +25,13 @@ const NeedsCardVolunteer = props => {
                 </CardContent>
 
             </Card>
+
+            <CardActions>
+
+                <Button size="small" onClick={() => props.assignCard(card.id)}>Assign</Button>
+
+            </CardActions>
+
         </React.Fragment>
     )
     )
