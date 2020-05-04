@@ -1,19 +1,15 @@
 import React from "react"
 import axiosInstance from "../../Axios/Axios"
 import { USER_EDIT_API_ENDPOINT } from "../../Utils/utils"
-import { DONATIONS_API_ENDPOINT } from "../../Utils/utils"
 import { USER_DATA_API_ENDPOINT } from "../../Utils/utils"
-import DonationCardDummy from "../Donations/DonationCard/DonationCardDummy"
-
 import { Typography, Divider, TextField, Button } from "@material-ui/core"
 
-let userId = "5ea1d2c5b53ebd1010fe7962";
+let userId = localStorage.getItem("authToken");;
 let Lastname = "";
 let Firstname = "";
 let Email = "";
 let Telephone = "";
 let Address = "";
-
 
 class UserEditComponent extends React.Component {
      constructor(props) {
@@ -26,21 +22,21 @@ class UserEditComponent extends React.Component {
                 "telephone" : "default",
                 "address"  : "default"
             }]
-        }  
+        } 
+        this.DisplayUserData();
     }
-    
-    componentDidMount =() => {
+  
+   componentDidMount =() => {
         this.displayUserData();
     }
 
-                /**POST */ // Send the updated data 
+     /**POST */ // Send the updated data 
     updateUser = () => {
-      
-        axiosInstance.put(USER_EDIT_API_ENDPOINT + '/' + userId, {"Lastname": this.state.user.lastname, "Firstname": this.state.user.firstname, "Email" : this.state.user.email, "Telephone" : this.state.user.telephone, "Address" : this.state.user.address}).then(() => {
+      axiosInstance.put(USER_EDIT_API_ENDPOINT + '/' + userId, {"Lastname": this.state.user.lastname, "Firstname": this.state.user.firstname, "Email" : this.state.user.email, "Telephone" : this.state.user.telephone, "Address" : this.state.user.address}).then(() => {
         })
     }
 
-    /**GET */
+
     displayUserData = () => {
         axiosInstance.get(USER_DATA_API_ENDPOINT + '/' + userId).then(response => {
             this.setState({
@@ -112,7 +108,10 @@ class UserEditComponent extends React.Component {
                 <React.Fragment>
     
                     <Typography variant="h4">Edit User</Typography>
-                    <Divider></Divider>                                                 
+
+                    <Divider></Divider>               
+                    <br></br><br></br>
+
                     <Divider></Divider>
                                
                     <TextField id="outlined-basic" label="Firstname" variant="outlined" value={this.state.user.firstname} onChange={this.setFirstname} />
@@ -126,4 +125,6 @@ class UserEditComponent extends React.Component {
             )
         }
 }
+
 export default UserEditComponent
+

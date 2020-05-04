@@ -12,14 +12,21 @@ class FABComponent extends React.Component{
 
     render(){
         const {classes} = this.props;
-
-        return(
-            <React.Fragment>
-                <Fab className = {classes.fabCreate} color="secondary" aria-label="edit">
-                    <AddIcon />
-                </Fab>
-            </React.Fragment>
-        )
+        if (localStorage.getItem("userType") === "volunteer") {
+            return(
+                <React.Fragment>
+                </React.Fragment>
+            )
+        } else {
+            return (
+                <React.Fragment>
+                    <Fab className = {classes.fabCreate} color="secondary" aria-label="edit">
+                        <AddIcon />
+                    </Fab>
+                </React.Fragment>
+            )           
+        }
+        
     }
 
 }
