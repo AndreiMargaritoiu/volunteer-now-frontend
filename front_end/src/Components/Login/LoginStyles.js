@@ -7,7 +7,7 @@ export const loginStyles = theme => ({
     },
     avatar: {
         margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
+        backgroundColor: "#f5767d",
     },
     form: {
         width: '100%', // Fix IE 11 issue.
@@ -15,5 +15,11 @@ export const loginStyles = theme => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
+        backgroundColor : "#6291b0"
     },
+    notchedOutline: {
+       
+        borderColor: "#6291b0 !important"
+      },
+  
 });
