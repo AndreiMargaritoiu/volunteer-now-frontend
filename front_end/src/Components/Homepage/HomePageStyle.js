@@ -31,11 +31,10 @@ export const stylesHomepage = (theme) => ({
     color: "rgba(255, 255, 255, 0.54)",
   },
   container: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(12, 1fr)',
+    display: "grid",
+    gridTemplateColumns: "repeat(12, 1fr)",
     gridGap: theme.spacing(3),
   },
- 
 });
 
 export const tileData = [

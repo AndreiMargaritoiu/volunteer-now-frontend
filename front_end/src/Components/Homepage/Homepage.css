@@ -19,9 +19,8 @@ div.brmedium {
 }
 
 div.buttonDiv {
-   margin-top: -35px;
+  margin-top: -35px;
 }
-
 
 h1 {
   font-family: "Six Caps";
@@ -74,10 +73,11 @@ footer.Footer {
   width: 400px;
   height: 400px;
 }
-a:link,a:visited, a:hover, a:active {
+a:link,
+a:visited,
+a:hover,
+a:active {
   text-decoration: none;
-  text-emphasis-color:none;
-  background-color:none;
-  
+  text-emphasis-color: none;
+  background-color: none;
 }
-
