@@ -1,7 +1,16 @@
-import React from "react"
-import axiosInstance from "../../Axios/Axios"
-import { LOGIN_API_ENDPOINT } from "../../Utils/utils"
-import { Typography, TextField, Button, Grid, Link, Container, withStyles, Avatar } from "@material-ui/core"
+import React from "react";
+import axiosInstance from "../../Axios/Axios";
+import { LOGIN_API_ENDPOINT } from "../../Utils/utils";
+import {
+  Typography,
+  TextField,
+  Button,
+  Grid,
+  Link,
+  Container,
+  withStyles,
+  Avatar,
+} from "@material-ui/core";
 import { loginStyles } from "./LoginStyles";
 import { Redirect } from "react-router-dom";
 import base64 from 'react-native-base64'
@@ -56,6 +65,17 @@ class LoginComponent extends React.Component {
         this.setState({
             checker: true
         })
+        .then((response) => {
+          if (response.data == "user not found") {
+            alert("User does not exist!");
+            this.setRedirect();
+          } else if (response.data == "wrong password")
+            alert("Wrong password!");
+          else alert("User " + response.data + " logged in successfully");
+        })
+        .catch((error) => {
+          alert(error);
+        });
     }
 
     getEmail = (event) => {
@@ -139,4 +159,4 @@ class LoginComponent extends React.Component {
 
 }
 
-export default withStyles(loginStyles)(LoginComponent)
+export default withStyles(loginStyles)(LoginComponent);

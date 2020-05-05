@@ -14,9 +14,11 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-native-base64": "0.0.2",
+    "react-native-fs": "^2.16.6",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "typeface-roboto": "0.0.75"
   },
   "scripts": {
     "start": "react-scripts start",
