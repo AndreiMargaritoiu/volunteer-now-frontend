@@ -3,6 +3,8 @@ import axiosInstance from "../../Axios/Axios"
 import { REGISTER_API_ENDPOINT } from "../../Utils/utils"
 import { Typography, TextField, Button, Container, withStyles, Avatar, FormControl, InputLabel, Select, MenuItem } from "@material-ui/core"
 import { registerStyles } from "./RegisterStyles";
+import { Redirect } from "react-router-dom";
+import base64 from 'react-native-base64'
 
 let lastname = "";
 let firstname = "";
@@ -16,17 +18,32 @@ let myArray = [];
 
 class RegisterComponent extends React.Component {
 
-
+    constructor(props) {
+        super(props)
+        this.state = {
+            redirect: null
+        }
+    }
 
     createUser = () => {
         if ((lastname !== "") && (firstname !== "") && (email !== "") && (telephone !== "") && (address !== "") && (password !== "")) {
             if (password === passwordcheck) {
               
-                axiosInstance.post(REGISTER_API_ENDPOINT, {
+                axiosInstance.post(REGISTER_API_ENDPOINT + "/Register", {
                     "LastName": lastname, "FirstName": firstname, "Email": email, "Telephone": telephone,
                     "Address": address, "Type": type, "Password": btoa(password), "ObjectId": myArray
-                }).then(() => {
-                    alert("User created successfully");
+                }).then(response => {
+                    console.log("am ajuns aici");
+                    console.log(response.data);
+                    this.setState({
+                        user: JSON.parse(base64.decode(response.data))
+                    })
+                    const user = this.state.user.Id + " " + this.state.user.Type;
+                    alert("User " + user + " created successfully");
+                    localStorage.setItem("authToken", this.state.user.Id);
+                    localStorage.setItem("userType", this.state.user.Type);
+                    this.setState({ redirect: "/dashboard" });    
+                    console.log("final");             
                 })
                     .catch(() => {
                         alert("User already exists");
@@ -73,6 +90,9 @@ class RegisterComponent extends React.Component {
 
     render() {
         const { classes } = this.props;
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+        }
         return (
             <Container component="main" maxWidth="xs">
                 <div className={classes.paper}>
