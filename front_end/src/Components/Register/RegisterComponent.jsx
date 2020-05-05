@@ -29,10 +29,12 @@ class RegisterComponent extends React.Component {
         if ((lastname !== "") && (firstname !== "") && (email !== "") && (telephone !== "") && (address !== "") && (password !== "")) {
             if (password === passwordcheck) {
               
-                axiosInstance.post(REGISTER_API_ENDPOINT, {
+                axiosInstance.post(REGISTER_API_ENDPOINT + "/Register", {
                     "LastName": lastname, "FirstName": firstname, "Email": email, "Telephone": telephone,
                     "Address": address, "Type": type, "Password": btoa(password), "ObjectId": myArray
                 }).then(response => {
+                    console.log("am ajuns aici");
+                    console.log(response.data);
                     this.setState({
                         user: JSON.parse(base64.decode(response.data))
                     })
@@ -40,7 +42,8 @@ class RegisterComponent extends React.Component {
                     alert("User " + user + " created successfully");
                     localStorage.setItem("authToken", this.state.user.Id);
                     localStorage.setItem("userType", this.state.user.Type);
-                    this.setState({ redirect: "/dashboard" });                 
+                    this.setState({ redirect: "/dashboard" });    
+                    console.log("final");             
                 })
                     .catch(() => {
                         alert("User already exists");

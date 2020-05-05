@@ -18,13 +18,14 @@ class AppBarComponent extends React.Component {
     }
 
     update = () => {
-        this.setState({ redirect: "/userEdit" });
+        this.setState({ redirect: "/user/edit" });
     }
 
     logout = () => {
         localStorage.clear();
         this.setState({ redirect: "/login" });
     }
+
 
     render() {
         const { classes } = this.props;

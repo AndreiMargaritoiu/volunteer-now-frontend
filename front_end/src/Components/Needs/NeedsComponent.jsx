@@ -11,11 +11,11 @@ let description = "";
 class NeedsComponent extends React.Component {
 
     constructor(props) {
-        
+
         super(props)
         this.state = {
             needs: [{
-                "title": "default"
+             
             }]
         }
     }
@@ -25,8 +25,9 @@ class NeedsComponent extends React.Component {
         this.uid = localStorage.getItem("authToken");
         this.refreshCards()
     }
-   
+
     refreshCards = () => {
+        {/**VOLUNTAR */}
         if (this.page) {
             axiosInstance.get(NEEDS_API_ENDPOINT).then(response => {
                 this.setState({
@@ -34,17 +35,19 @@ class NeedsComponent extends React.Component {
                 })
             });
         } else {
+         {/** NEVOIAS */}
             axiosInstance.get(NEEDS_API_ENDPOINT + "/" + this.uid).then(response => {
                 this.setState({
                     needs: response.data
                 })
             });
-        }        
-    }
+        }
+    }   
 
     createCard = () => {
-        axiosInstance.post(NEEDS_API_ENDPOINT, { 
-            "UserId": localStorage.getItem("authToken"), "Title": title, "Description": description }).then(() => {
+        axiosInstance.post(NEEDS_API_ENDPOINT, {
+            "UserId": localStorage.getItem("authToken"), "Title": title, "Description": description
+        }).then(() => {
             this.refreshCards()
         })
     }
@@ -57,28 +60,45 @@ class NeedsComponent extends React.Component {
         description = event.target.value;
     }
 
-    render() {  
+    assignCard = () => {
+        console.log("TODO");
+    }
+
+
+    updateCard = () => {
+        console.log("TODO UPDATE");
+    }
+
+    deleteCard = () => {
+        console.log("TODO DELETE");
+    }
+
+    saveCard = () => {
+        console.log("TODO SAVE");
+    }
+    
+
+
+    render() {
         if (this.page) {
             return (
                 <React.Fragment>
                     <Typography variant="h4">Volunteer dashboard</Typography>
                     <Divider></Divider>
-                    <NeedsCardVolunteer cards={this.state.needs}></NeedsCardVolunteer>
+                    <NeedsCardVolunteer cards={this.state.needs} assignCard={this.assignCard}></NeedsCardVolunteer>
                 </React.Fragment>
             )
-        } else {     
+        } else {
             return (
                 <React.Fragment>
                     <Typography variant="h4">Nevoias dashboard</Typography>
                     <Divider></Divider>
-                    <NeedsCardNevoias cards={this.state.needs}></NeedsCardNevoias>
+                    <NeedsCardNevoias cards={this.state.needs} updateCard={this.updateCard} deleteCard={this.deleteCard} saveCard={this.saveCard}></NeedsCardNevoias>
                     <br />
-                    <TextField id="outlined-basic" label="Title" variant="outlined" onChange={this.getTitle} />
-                    <TextField id="outlined-basic" label="Description" variant="outlined" onChange={this.getDescription} />
-                    <Button onClick={this.createCard}>Create Need</Button>       
+         
                 </React.Fragment>
-            )                      
-        }        
+            )
+        }
     }
 
 }

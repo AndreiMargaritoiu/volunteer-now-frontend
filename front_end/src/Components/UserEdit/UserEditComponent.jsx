@@ -23,7 +23,6 @@ class UserEditComponent extends React.Component {
                 "address"  : "default"
             }]
         } 
-        this.DisplayUserData();
     }
   
    componentDidMount =() => {

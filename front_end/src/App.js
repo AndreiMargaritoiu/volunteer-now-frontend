@@ -13,7 +13,6 @@ import LoginComponent from "./Components/Login/LoginComponent";
 import RegisterComponent from "./Components/Register/RegisterComponent";
 import NeedsComponent from "./Components/Needs/NeedsComponent";
 import DashboardComponent from './Components/Dashboard/DashboardComponent';
-import UserEditComponent from "./Components/UserEdit/UserEditComponent";
 
 
 function App() {
@@ -29,10 +28,9 @@ function App() {
       <Switch>
         <Route exact path = "/" component={MainComponent} />
         <Route exact path = "/donations" component ={DonationComponent}/>
-        <Route exact path = "/userEdit" component ={UserEditComponent}/>
+        <Route exact path = "/user/edit" component ={UserEditComponent}/>
         <Route exact path = "/login" component ={LoginComponent}/>
         <Route exact path = "/register" component ={RegisterComponent}/>
-        <Route exact path = "/userEdit" component ={UserEditComponent}/>
         <Route exact path = "/needs" component ={NeedsComponent}/>
         <Route exact path = "/dashboard" component ={DashboardComponent}/>
       </Switch>
