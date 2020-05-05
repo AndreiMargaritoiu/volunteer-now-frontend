@@ -10,26 +10,18 @@ div.main {
   -moz-background-size: cover;
   -o-background-size: cover;
 }
-div.space {
-  height: 100px;
+div.brsmall {
+  height: 50px;
 }
+
+div.brmedium {
+  height: 150px;
+}
+
 div.buttonDiv {
-  margin: -35px;
-}
-.br {
-  display: block;
-  margin-bottom: 0em;
+   margin-top: -35px;
 }
 
-.brmedium {
-  display: block;
-  margin-bottom: 1em;
-}
-
-.brlarge {
-  display: block;
-  margin-bottom: 2em;
-}
 
 h1 {
   font-family: "Six Caps";
@@ -82,3 +74,10 @@ footer.Footer {
   width: 400px;
   height: 400px;
 }
+a:link,a:visited, a:hover, a:active {
+  text-decoration: none;
+  text-emphasis-color:none;
+  background-color:none;
+  
+}
+

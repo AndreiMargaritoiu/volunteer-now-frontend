@@ -2,7 +2,6 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import "./Homepage.css";
 import Typography from "@material-ui/core/Typography";
-import Link from "@material-ui/core/Link";
 import IconButton from "@material-ui/core/IconButton";
 import { tileData } from "./HomePageStyle";
 import { withStyles } from "@material-ui/core";
@@ -18,10 +17,7 @@ import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
+      {"Copyright © VolunteerNow "}
       {new Date().getFullYear()}
       {"."}
     </Typography>
@@ -63,7 +59,7 @@ class Homepage extends React.Component {
 
     return (
       <React.Fragment>
-        <div clasName={classes.root}>
+        <div class="root">
           <div>
             <div class="main">
               <link
@@ -94,36 +90,43 @@ class Homepage extends React.Component {
             <div class="buttonDiv">
               <Grid container justify="center">
                 <Grid item>
-                  <Button
-                    style={{
-                      minWidth: "300px",
-                      minHeight: "50px",
-                      fontSize: "30px",
-                      color: "#a0b7c6",
-                      fontFamily: "Helvetica",
-                      textTransform: "capitalize",
-                      backgroundColor: "#e8e2da",
-                    }}
-                    variant="contained"
-                  >
-                    Join Now
-                  </Button>
+                  <a href="./login" target="_self">
+                    <Button
+                      style={{
+                        minWidth: "300px",
+                        minHeight: "50px",
+                        fontSize: "30px",
+                        color: "#a0b7c6",
+                        fontFamily: "Helvetica",
+                        textTransform: "capitalize",
+                        backgroundColor: "#e8e2da",
+                      }}
+                      variant="contained"
+                    >
+                      {" "}
+                      Join Now
+                    </Button>
+                  </a>
                 </Grid>
               </Grid>
             </div>
           </div>
 
-          <div class="space">
-            <br></br>
-          </div>
+          <div class="brmedium"></div>
 
           <div className={classes.root}>
-            <GridList className={classes.gridList} cols="3" spacing="40">
+            <GridList
+              className={classes.gridList}
+              cols={3}
+              spacing="60"
+              cellHeight="400px"
+            >
               {tileData.map((tile) => (
-                <GridListTile key={tile.title}>
-                  <img src={tile.img} className="photo" alt=" " />
+                <GridListTile key={tile.tile}>
+                  <img src={tile.img} class="photo" alt=" " />
 
                   <GridListTileBar
+                    title={tile.tile}
                     classes={{
                       root: classes.titleBar,
                       title: classes.title,
@@ -195,35 +198,42 @@ class Homepage extends React.Component {
             </Popover>
           </div>
 
-          <div class="space">
-            <br></br>
-          </div>
+          <div class="brmedium"></div>
+
           <footer class="Footer">
             <div class="space">
               <br></br>
             </div>
-            <Typography variant="h6" align="center" gutterBottom></Typography>
+
             <center>
               <div>
-                <Button
-                  aria-label="Donate"
-                  style={{ color: "#2A7549" }}
-                  variant="contained"
-                  className={classes.button}
-                  startIcon={<MonetizationOnIcon />}
+                <div class="brsmall"></div>
+                <a
+                  id="donate"
+                  color="#2A7549"
+                  href="./donations"
+                  target="_self"
                 >
-                  Donate now
-                </Button>
+                  <Button
+                    onclick="./donations"
+                    aria-label="Donate"
+                    style={{ color: "#2A7549" }}
+                    variant="contained"
+                    className={classes.button}
+                    startIcon={<MonetizationOnIcon />}
+                  >
+                    Donate Now
+                  </Button>
+                </a>
               </div>
             </center>
+            <br></br>
             <Typography
               variant="subtitle1"
               align="center"
               color="textSecondary"
               component="p"
-            >
-              Something here to give the footer a purpose!
-            </Typography>
+            ></Typography>
             <Copyright />
           </footer>
         </div>
