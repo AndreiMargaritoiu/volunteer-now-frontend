@@ -123,6 +123,7 @@ class LoginComponent extends React.Component {
                 onChange={this.getEmail}
               />
               <TextField
+                classes = {{label: classes.label}}
                 variant="outlined"
                 margin="normal"
                 required
@@ -133,6 +134,9 @@ class LoginComponent extends React.Component {
                 id="password"
                 autoComplete="current-password"
                 onChange={this.getPassword}
+                className = {classes.input}
+                color = "white"
+                
               />
               <Button
                 fullWidth
@@ -143,6 +147,18 @@ class LoginComponent extends React.Component {
               >
                 Sign In
               </Button>
+              
+              <Button
+                fullWidth
+                variant="outlined"
+                color="primary"
+                href="./register"
+                className={classes.submit1}
+                // onClick={this.login}
+              >
+                Don't have an account yet? Register instead.
+              </Button>
+              
               <Grid container>
                 <Grid>
                   {this.state.checker ? (
