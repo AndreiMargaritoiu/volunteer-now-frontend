@@ -4,7 +4,7 @@ import { USER_EDIT_API_ENDPOINT } from "../../Utils/utils"
 import { USER_DATA_API_ENDPOINT } from "../../Utils/utils"
 import { Typography, Divider, TextField, Button } from "@material-ui/core"
 
-let userId = localStorage.getItem("authToken");;
+let userId = localStorage.getItem("authToken");
 let Lastname = "";
 let Firstname = "";
 let Email = "";
