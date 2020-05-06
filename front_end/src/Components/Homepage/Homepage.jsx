@@ -90,8 +90,9 @@ class Homepage extends React.Component {
             <div class="buttonDiv">
               <Grid container justify="center">
                 <Grid item>
-                  <a href="./login" target="_self">
+               
                     <Button
+                    href="./login"
                       style={{
                         minWidth: "300px",
                         minHeight: "50px",
@@ -106,7 +107,7 @@ class Homepage extends React.Component {
                       {" "}
                       Join Now
                     </Button>
-                  </a>
+                
                 </Grid>
               </Grid>
             </div>
@@ -118,7 +119,7 @@ class Homepage extends React.Component {
             <GridList
               className={classes.gridList}
               cols={3}
-              spacing="60"
+              spacing="100"
               cellHeight="400px"
             >
               {tileData.map((tile) => (
@@ -208,13 +209,9 @@ class Homepage extends React.Component {
             <center>
               <div>
                 <div class="brsmall"></div>
-                <a
-                  id="donate"
-                  color="#2A7549"
-                  href="./donations"
-                  target="_self"
-                >
+               
                   <Button
+                   href="./donations"
                     onclick="./donations"
                     aria-label="Donate"
                     style={{ color: "#2A7549" }}
@@ -224,7 +221,7 @@ class Homepage extends React.Component {
                   >
                     Donate Now
                   </Button>
-                </a>
+                
               </div>
             </center>
             <br></br>
