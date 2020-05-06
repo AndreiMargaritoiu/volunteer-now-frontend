@@ -118,7 +118,7 @@ class Homepage extends React.Component {
             <GridList
               className={classes.gridList}
               cols={3}
-              spacing="60"
+              spacing="100"
               cellHeight="400px"
             >
               {tileData.map((tile) => (

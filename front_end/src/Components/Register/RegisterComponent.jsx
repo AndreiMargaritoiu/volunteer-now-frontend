@@ -5,6 +5,9 @@ import { Typography, TextField, Button, Container, withStyles, Avatar, FormContr
 import { registerStyles } from "./RegisterStyles";
 import { Redirect } from "react-router-dom";
 import base64 from 'react-native-base64'
+import { divStyle } from "./RegisterStyles";
+import "./RegisterCSS.css";
+import Logo from "../../Images/logo2.png";
 
 let lastname = "";
 let firstname = "";
@@ -28,7 +31,7 @@ class RegisterComponent extends React.Component {
     createUser = () => {
         if ((lastname !== "") && (firstname !== "") && (email !== "") && (telephone !== "") && (address !== "") && (password !== "")) {
             if (password === passwordcheck) {
-              
+
                 axiosInstance.post(REGISTER_API_ENDPOINT + "/Register", {
                     "LastName": lastname, "FirstName": firstname, "Email": email, "Telephone": telephone,
                     "Address": address, "Type": type, "Password": btoa(password), "ObjectId": myArray
@@ -42,8 +45,8 @@ class RegisterComponent extends React.Component {
                     alert("User " + user + " created successfully");
                     localStorage.setItem("authToken", this.state.user.Id);
                     localStorage.setItem("userType", this.state.user.Type);
-                    this.setState({ redirect: "/dashboard" });    
-                    console.log("final");             
+                    this.setState({ redirect: "/dashboard" });
+                    console.log("final");
                 })
                     .catch(() => {
                         alert("User already exists");
@@ -94,137 +97,154 @@ class RegisterComponent extends React.Component {
             return <Redirect to={this.state.redirect} />
         }
         return (
-            <Container component="main" maxWidth="xs">
-                <div className={classes.paper}>
+            <div className="main2">
+                <Container component="main" maxWidth="xs">
+                    <br></br>
+                    <div className={classes.paper} style={divStyle}>
 
-                    {//TODO add here volunteer logo
-                    }
-                    <Avatar className={classes.avatar}>
-                        VN
-                     </Avatar>
-
-                    <Typography component="h5" variant="h5">
-                        Register
-                    </Typography>
-                    <div className={classes.form} noValidate>
-
-                        <TextField
-                            autoComplete="fname"
-                            name="firstName"
-                            margin="normal"
-                            variant="outlined"
-                            required
-                            fullWidth
-                            id="firstName"
-                            label="First Name"
-                            autoFocus
-                            onChange={this.getFirstName}
+                        <Avatar
+                            alt="Remy Sharp"
+                            src={Logo}
+                            className={classes.large}
                         />
 
-                        <TextField
-                            variant="outlined"
-                            required
-                            fullWidth
-                            margin="normal"
-                            id="lastName"
-                            label="Last Name"
-                            name="lastName"
-                            autoComplete="lname"
-                            onChange={this.getLastName}
-                        />
-
-                        <TextField
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="email"
-                            label="Email Address"
-                            name="email"
-                            autoComplete="email"                 
-                            onChange={this.getEmail}
-                        />
-
-                        <TextField
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="phone"
-                            label="Phone"
-                            name="phone"
-                            type="number"
-                            autoComplete="phone"                      
-                            onChange={this.getTelephone}
-                        />  
-
-                        <TextField
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="adress"
-                            label="Address"
-                            name="adress"
-                            autoComplete="address"                      
-                            onChange={this.getAddress}
-                        />
-
-                        <FormControl margin="normal" fullWidth variant="outlined" className={classes.formControl}>
-                            <InputLabel fullWidth id="demo-simple-select-outlined-label">Type</InputLabel>
-                            <Select
-                                labelId="selecttype"
-                                id="selecttype"
-                                onChange={this.getOption}
-                                label="type"
-                                
-                            >
-                                <MenuItem value={"nevoias"}>nevoias</MenuItem>
-                                <MenuItem value={"volunteer"}>volunteer</MenuItem>
-                            </Select>
-                        </FormControl>
-
-                        <TextField
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                            onChange={this.getPassword}
-                        />
-
-                        <TextField
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="passwordcheck"
-                            label="Password Check"
-                            type="password"
-                            id="passwordcheck"
-                            autoComplete="current-password"
-                            onChange={this.getPasswordCheck}
-                        />
-                        <Button
-
-                            fullWidth
-                            variant="contained"
-                            color="primary"
-                            className={classes.submit}
-                            onClick={this.createUser}
-                        >
+                        <Typography component="h1" variant="h5">
                             Register
+                    </Typography>
+                        <div className={classes.form} noValidate>
+
+                            <TextField
+                                autoComplete="fname"
+                                name="firstName"
+                                margin="normal"
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="firstName"
+                                label="First Name"
+                                autoFocus
+                                onChange={this.getFirstName}
+                            />
+
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                margin="normal"
+                                id="lastName"
+                                label="Last Name"
+                                name="lastName"
+                                autoComplete="lname"
+                                onChange={this.getLastName}
+                            />
+
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="email"
+                                label="Email Address"
+                                name="email"
+                                autoComplete="email"
+                                onChange={this.getEmail}
+                            />
+
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="phone"
+                                label="Phone"
+                                name="phone"
+                                type="number"
+                                autoComplete="phone"
+                                onChange={this.getTelephone}
+                            />
+
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="adress"
+                                label="Address"
+                                name="adress"
+                                autoComplete="address"
+                                onChange={this.getAddress}
+                            />
+
+                            <FormControl margin="normal" fullWidth variant="outlined" className={classes.formControl}>
+                                <InputLabel fullWidth id="demo-simple-select-outlined-label">Type</InputLabel>
+                                <Select
+                                    labelId="selecttype"
+                                    id="selecttype"
+                                    onChange={this.getOption}
+                                    label="type"
+
+                                >
+                                    <MenuItem value={"nevoias"}>nevoias</MenuItem>
+                                    <MenuItem value={"volunteer"}>volunteer</MenuItem>
+                                </Select>
+                            </FormControl>
+
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="password"
+                                label="Password"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
+                                onChange={this.getPassword}
+                            />
+
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="passwordcheck"
+                                label="Password Check"
+                                type="password"
+                                id="passwordcheck"
+                                autoComplete="current-password"
+                                onChange={this.getPasswordCheck}
+                            />
+                            <Button
+
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                className={classes.submit}
+                                onClick={this.createUser}
+                            >
+                                Register
                          </Button>
+                            <Button
+                                href="./login"
+                                style={{
+                                    fontSize: "12px",
+                                    color: "#6291b0",
+                                    borderColor: "#6291b0",
+                                    textTransform: "initial",
+                                  }}
+                                  className={classes.submit2}  
+                                fullWidth
+                                variant= "outlined"
+                                >
+                                {" "}
+                                Already a member? Sign In instead.
+                            </Button>
+                    
 
+                        </div>
                     </div>
-                </div>
-
-            </Container>
-
+                </Container>
+            </div>
 
         )
     }
