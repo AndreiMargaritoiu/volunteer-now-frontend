@@ -184,8 +184,8 @@ class RegisterComponent extends React.Component {
                                     label="type"
 
                                 >
-                                    <MenuItem value={"nevoias"}>nevoias</MenuItem>
-                                    <MenuItem value={"volunteer"}>volunteer</MenuItem>
+                                    <MenuItem value={"nevoias"}>Person In Need</MenuItem>
+                                    <MenuItem value={"volunteer"}>Volunteer</MenuItem>
                                 </Select>
                             </FormControl>
 
