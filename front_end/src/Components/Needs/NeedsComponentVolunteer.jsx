@@ -1,6 +1,7 @@
 import React from "react"
 import axiosInstance from "../../Axios/Axios"
 import { NEEDS_API_ENDPOINT } from "../../Utils/utils"
+import { REGISTER_API_ENDPOINT } from "../../Utils/utils"
 import { Typography, Divider } from "@material-ui/core"
 import NeedsCard from "./NeedsCard"
 
@@ -11,10 +12,11 @@ class NeedsComponentVolunteer extends React.Component {
         super(props)
         this.state = {
             show: false,
-            needs: [{
-             
+            assignatedNeeds: [{
+                "title" : "default",
+                "description" : "default"
             }],
-            need: [{
+            needs: [{
                 "title" : "default",
                 "description" : "default"
             }]
@@ -31,11 +33,18 @@ class NeedsComponentVolunteer extends React.Component {
             this.setState({
                 needs: response.data
             })
+        })
+        axiosInstance.get(NEEDS_API_ENDPOINT + "/get/assigned/" + this.uid).then(response => {
+            this.setState({
+                assignatedNeeds: response.data
+            })
         });
     }   
 
-    assignCard = () => {
-        console.log("TODO");
+    assignCard = (cardid) => {
+        axiosInstance.put(REGISTER_API_ENDPOINT + "/assign/" + this.uid + "/" + cardid).then(() => {
+           this.refreshCards()
+        });
     }
 
     render() {
@@ -43,6 +52,10 @@ class NeedsComponentVolunteer extends React.Component {
             <React.Fragment>
                 <Typography variant="h4">Volunteer dashboard</Typography>
                 <Divider></Divider>
+                <Typography variant="h6">Assigned needs</Typography>
+                <NeedsCard cards={this.state.assignatedNeeds}></NeedsCard>
+                <Divider></Divider>
+                <Typography variant="h6">Unassigned needs</Typography>
                 <NeedsCard cards={this.state.needs} assignCard={this.assignCard}></NeedsCard>
             </React.Fragment>
         )
