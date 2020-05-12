@@ -239,10 +239,9 @@ class RegisterComponent extends React.Component {
                                 {" "}
                                 Already a member? Sign In instead.
                             </Button>
-                    
-
                         </div>
                     </div>
+                    <br></br>
                 </Container>
             </div>
 
