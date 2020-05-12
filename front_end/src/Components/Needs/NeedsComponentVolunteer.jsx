@@ -29,7 +29,7 @@ class NeedsComponentVolunteer extends React.Component {
     }
 
     refreshCards = () => {
-        axiosInstance.get(NEEDS_API_ENDPOINT).then(response => {
+        axiosInstance.get(NEEDS_API_ENDPOINT + "/get/unassigned/" + this.uid).then(response => {
             this.setState({
                 needs: response.data
             })
@@ -42,12 +42,14 @@ class NeedsComponentVolunteer extends React.Component {
     }   
 
     assignCard = (cardid) => {
+
         axiosInstance.put(REGISTER_API_ENDPOINT + "/assign/" + this.uid + "/" + cardid).then(() => {
            this.refreshCards()
         });
     }
 
     render() {
+        console.log(this.state.needs)
         return (
             <React.Fragment>
                 <Typography variant="h4">Volunteer dashboard</Typography>

@@ -17,13 +17,12 @@ import DashboardComponent from "./Components/Dashboard/DashboardComponent";
 function App() {
   /*REDIRECTING TO DEFAULT - TO BE DECIDED*/
   const defaultRoute =
-    window.location.pathname === "/" ? <Redirect to="/" /> : undefined;
+    window.location.pathname === "/" ? <Redirect to="/homepage" /> : undefined;
 
   return (
     /*ADD COMPONENTS WITH PATH*/
     <Router>
       <Switch>
-        <Route exact path="/" component={MainComponent} />
         <Route exact path="/donations" component={DonationComponent} />
         <Route exact path="/homepage" component={Homepage} />
         <Route exact path="/user/edit" component={UserEditComponent} />

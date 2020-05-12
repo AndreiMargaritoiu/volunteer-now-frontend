@@ -54,9 +54,6 @@ class NeedsComponentNevoias extends React.Component {
     }
 
     saveCard = () => {   
-        console.log(idToUpdate)
-        console.log(this.state.need.title)
-        console.log(this.state.need.description)
         axiosInstance.put(NEEDS_API_ENDPOINT + '/' + idToUpdate, {
             "title": this.state.need.title, "description": this.state.need.description}).then(() => {
                 alert("Need updated successfully");
@@ -92,6 +89,7 @@ class NeedsComponentNevoias extends React.Component {
     };
 
     render() {
+        console.log(this.state)
         return (
             <React.Fragment>
                 <Typography variant="h4">Nevoias dashboard</Typography>
