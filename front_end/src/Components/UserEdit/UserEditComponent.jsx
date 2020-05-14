@@ -4,8 +4,12 @@ import { USER_EDIT_API_ENDPOINT } from "../../Utils/utils"
 import { USER_DATA_API_ENDPOINT } from "../../Utils/utils"
 import { Typography, TextField, Button, Container, withStyles, Avatar, FormControl, InputLabel, Select, MenuItem } from "@material-ui/core"
 import { editUserStyles } from "./EditUserStyles";
+import { divStyle } from "./EditUserStyles";
 import AppBarComponent from "../AppBar/AppBarComponent";
 import { Redirect } from "react-router-dom";
+import Logo from "../../Images/logo2.png";
+import "./EditUserCSS.css";
+
 
 let userId = localStorage.getItem("authToken");
 let Lastname = "";
@@ -118,16 +122,17 @@ class UserEditComponent extends React.Component {
             return <Redirect to={this.state.redirect} />
         }
         return (
-            <React.Fragment>
+            <div className="main3">
             <AppBarComponent></AppBarComponent>
+            <React.Fragment>
             <Container component="main" maxWidth="xs">
-                <div className={classes.paper}>
+                <div className={classes.paper} style={divStyle}>
 
-                    {//TODO add here volunteer logo
-                    }
-                    <Avatar className={classes.avatar}>
-                        VN
-                     </Avatar>
+                    <Avatar
+                            alt="Remy Sharp"
+                            src={Logo}
+                            className={classes.large}
+                        />
 
                     <Typography component="h5" variant="h5">
                         Update your information!
@@ -210,7 +215,7 @@ class UserEditComponent extends React.Component {
                             fullWidth
                             variant="contained"
                             color="primary"
-                            className={editUserStyles}
+                            className={classes.submit}
                             onClick={this.updateUser}   
                             >
                             Save
@@ -226,10 +231,10 @@ class UserEditComponent extends React.Component {
                             </Typography>
                     </div>
                 </div>
-
+            <br></br>
             </Container>
             </React.Fragment>
-
+            </div>
             )
         }
 }
