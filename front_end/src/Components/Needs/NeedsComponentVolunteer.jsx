@@ -18,7 +18,7 @@ class NeedsComponentVolunteer extends React.Component {
             }],
             needs: [{
                 "title" : "default",
-                "description" : "default"
+                "description" : "default"             
             }]
         }
     }

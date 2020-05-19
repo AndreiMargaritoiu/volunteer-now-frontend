@@ -111,8 +111,16 @@ class UserEditComponent extends React.Component {
             address  : event.target.value,
         }});
     }
+    isTokenExpired = token => {
+        if (token === null) return false;
+        return true;
+      };
+
 
     render() {
+        if (this.isTokenExpired(localStorage.getItem("authToken")) === false) {
+            return <Redirect to="/login" />;
+        }
         const { classes } = this.props;
         if (this.state.redirect) {
             return <Redirect to={this.state.redirect} />
