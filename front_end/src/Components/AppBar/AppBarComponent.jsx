@@ -13,12 +13,15 @@ class AppBarComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            redirect: null 
+            redirect: null
         }
     }
 
     update = () => {
-        this.setState({ redirect: "/user/edit" });
+        this.setState({ 
+            redirect: "/user/edit",
+            updatebtn: true
+        });     
     }
 
     logout = () => {
@@ -26,6 +29,9 @@ class AppBarComponent extends React.Component {
         this.setState({ redirect: "/login" });
     }
 
+    goHome = () => {
+        this.setState({ redirect: "/dashboard" });
+    }
 
     render() {
         const { classes } = this.props;
@@ -35,15 +41,10 @@ class AppBarComponent extends React.Component {
         return (
             <AppBar position="static">
                 <Toolbar>
-                    <Typography variant="h6" className={classes.title}>
-                        Your dashboard
-                    </Typography>
-
+                    <Avatar edge="start" className={classes.avatar} onClick={this.goHome}>VN</Avatar>
+                    <Typography variant="h6" className={classes.title}></Typography>
                     <Button color="inherit" onClick={this.update} className={classes.submit}>Update Profile</Button>
                     <Button color="inherit"onClick={this.logout} className={classes.submit}>Logout</Button>
-                    <Avatar edge="start" className={classes.avatar}>VN</Avatar>
-
-
                 </Toolbar>
             </AppBar>
 
