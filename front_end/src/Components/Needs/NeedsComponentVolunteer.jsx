@@ -19,7 +19,12 @@ class NeedsComponentVolunteer extends React.Component {
             needs: [{
                 "title" : "default",
                 "description" : "default"             
+            }],
+            doneNeeds: [{
+                "title" : "default",
+                "description" : "default"
             }]
+
         }
     }
 
@@ -38,7 +43,12 @@ class NeedsComponentVolunteer extends React.Component {
             this.setState({
                 assignatedNeeds: response.data
             })
-        });
+        })
+        axiosInstance.get(NEEDS_API_ENDPOINT + "/get/done/" + this.uid).then(response => {
+            this.setState({
+                doneNeeds: response.data
+            })
+        })
     }   
 
     assignCard = (cardid) => {
@@ -46,6 +56,9 @@ class NeedsComponentVolunteer extends React.Component {
         axiosInstance.put(REGISTER_API_ENDPOINT + "/assign/" + this.uid + "/" + cardid).then(() => {
            this.refreshCards()
         });
+
+    
+ 
     }
 
     render() {
@@ -59,6 +72,10 @@ class NeedsComponentVolunteer extends React.Component {
                 <Divider></Divider>
                 <Typography variant="h6">Unassigned needs</Typography>
                 <NeedsCard cards={this.state.needs} assignCard={this.assignCard}></NeedsCard>
+                <Divider></Divider>
+                <Typography variant="h6">Done needs</Typography>
+                <NeedsCard cards={this.state.doneNeeds}></NeedsCard>
+
             </React.Fragment>
         )
     }
