@@ -67,6 +67,13 @@ class NeedsComponentVolunteer extends React.Component {
          });
     }
 
+    doneCard = (cardid) => {
+        console.log("card done");
+        axiosInstance.put(REGISTER_API_ENDPOINT + "/done/" + this.uid + "/" + cardid).then(() => {
+            this.refreshCards()
+         });
+    }
+
     render() {
         console.log(this.state.needs)
         return (
@@ -74,7 +81,7 @@ class NeedsComponentVolunteer extends React.Component {
                 <Typography variant="h4">Volunteer dashboard</Typography>
                 <Divider></Divider>
                 <Typography variant="h6">Assigned needs</Typography>
-                <NeedsCard cards={this.state.assignatedNeeds} dropCard={this.dropCard}></NeedsCard>
+                <NeedsCard cards={this.state.assignatedNeeds} dropCard={this.dropCard} doneCard={this.doneCard}></NeedsCard>
                 <Divider></Divider>
                 <Typography variant="h6">Unassigned needs</Typography>
                 <NeedsCard cards={this.state.needs} assignCard={this.assignCard}></NeedsCard>
