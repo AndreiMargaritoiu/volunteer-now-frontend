@@ -1,9 +1,8 @@
 import React from "react"
 import axiosInstance from "../../Axios/Axios"
 import { NEEDS_API_ENDPOINT } from "../../Utils/utils"
-import { Typography, Divider, TextField, Button } from "@material-ui/core"
+import { Typography, Divider, TextField, Button, Modal, Container, Avatar } from "@material-ui/core"
 import NeedsCard from "./NeedsCard"
-import Modal from "./Modal"
 
 let Title = "";
 let Description = "";
@@ -12,10 +11,9 @@ let idToUpdate = "";
 class NeedsComponentNevoias extends React.Component {
 
     constructor(props) {
-
         super(props)
         this.state = {
-            show: false,
+            openModal: false,
             needs: [{
              
             }],
@@ -38,19 +36,18 @@ class NeedsComponentNevoias extends React.Component {
             })
         });
     }
-    
-    createCard = () => {
-        console.log("TODO create need")
-    }
 
     updateCard = (cardid) => {
+        this.setState({openModal: true })
+        console.log("udpate apasat")
         axiosInstance.get(NEEDS_API_ENDPOINT + '/getNeed/' + cardid).then(response => {
             this.setState({
                 need: response.data
             })       
             idToUpdate = cardid; 
-        });
-        this.setState({ show: true });
+            Title = response.data.title;
+            Description = response.data.description;
+        });      
     }
 
     saveCard = () => {   
@@ -59,7 +56,7 @@ class NeedsComponentNevoias extends React.Component {
                 alert("Need updated successfully");
                 this.refreshCards()
                 this.setState({ show: false });
-        })
+        }).then(() => this.setState({openModal: false}))
     }
 
     deleteCard = (cardid) => {
@@ -84,24 +81,86 @@ class NeedsComponentNevoias extends React.Component {
         }});
     }
 
-    hideModal = () => {
-        this.setState({ show: false });
-    };
+    openModal = () => {
+        this.setState({openModal: true })
+    } 
+
+    closeModal = () => {
+        this.setState({openModal: false});
+    }
 
     render() {
-        console.log(this.state)
         return (
             <React.Fragment>
                 <Typography variant="h4">Nevoias dashboard</Typography>
                 <Divider></Divider>
                 <NeedsCard cards={this.state.needs} updateCard={this.updateCard} deleteCard={this.deleteCard}></NeedsCard>
-                { this.state.show ? 
-                    <Modal show={this.state.show} handleClose={this.hideModal} handleSave={this.saveCard}>
-                        <p>Title:</p>
-                        <TextField id="outlined-basic" variant="outlined" value={this.state.need.title} onChange={this.setTitle} />
-                        <p>Description:</p>
-                        <TextField fullWidth multiline = {true} id="outlined-basic" variant="outlined" value={this.state.need.description} onChange={this.setDescription} />
-                    </Modal> 
+                { this.state.openModal ? 
+                    <Container component="main" maxWidth="xs">   
+                    <div>
+                        <Modal
+                            open = {this.state.openModal}
+                            aria-labelledby="simple-modal-title"
+                            aria-describedby="simple-modal-description"
+                            >
+                            <div className = "modal-container">
+                                <Container component="main" maxWidth="xs">   
+                             
+                                    <div>
+
+                                        <Typography component="h5" variant="h5">
+                                            Update your Need!
+                                        </Typography>
+                                        <TextField
+                                            autoComplete="needTitle"
+                                            name="title"
+                                            margin="normal"
+                                            variant="outlined"
+                                            required
+                                            fullWidth
+                                            id="needTitle"
+                                            label="Title"
+                                            autoFocus
+                                            value={this.state.need.title}
+                                            onChange={this.setTitle}
+                                        />
+
+                                        <TextField
+                                            variant="outlined"
+                                            required
+                                            fullWidth 
+                                            margin="normal"
+                                            id="needDescription"
+                                            label="Description"
+                                            name="needDescription"
+                                            autoComplete="ndescription"  
+                                            value={this.state.need.description}                                         
+                                            onChange={this.setDescription}
+                                        />
+                                        <Button
+                                            fullWidth
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={this.saveCard}   
+                                            >
+                                            Update Need
+                                        </Button>
+                                        <Divider></Divider>
+                                        <Button
+                                            fullWidth
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={this.closeModal}   
+                                            >
+                                            Cancel
+                                        </Button>
+                                    </div>
+                                </Container>
+                            </div>         
+                             
+                        </Modal> 
+                    </div>
+                </Container> 
                 : 
                 null}
                 <br />
