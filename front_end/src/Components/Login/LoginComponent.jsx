@@ -47,7 +47,6 @@ class LoginComponent extends React.Component {
                 
                 else {                   
                     const user = this.state.user.Id + " " + this.state.user.Type;
-                    alert("User " + user + " logged in successfully");
                     localStorage.setItem("authToken", this.state.user.Id);
                     localStorage.setItem("userType", this.state.user.Type);
                     this.setState({ redirect: "/dashboard" });

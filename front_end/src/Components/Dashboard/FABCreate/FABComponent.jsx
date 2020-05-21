@@ -8,8 +8,6 @@ import './FABStylesCSS.css';
 import { NEEDS_API_ENDPOINT } from "../../../Utils/utils";
 
 let userId = localStorage.getItem("authToken");
-let Title = "";
-let Description = "";
 
 class FABComponent extends React.Component {
 
@@ -24,13 +22,14 @@ class FABComponent extends React.Component {
         this.setState({openModal : true })
     } 
 
-    closeModal = (event) => {
+    closeModal = () => {
         this.setState({openModal : false});
     }
 
     createNeed = () => {
-        axiosInstance.post(NEEDS_API_ENDPOINT + '/' + userId, {"Title": this.Title, "Description": this.Description}).then(() => {
-            this.setState({openModal : false })
+        axiosInstance.post(NEEDS_API_ENDPOINT + '/' + userId, {"Title": this.Title, "Description": this.Description})
+        .then(() => {
+            this.setState({openModal : false});
         })
     }
 
@@ -74,7 +73,7 @@ class FABComponent extends React.Component {
                                             </Avatar>
 
                                             <Typography component="h5" variant="h5">
-                                                Update your Need!
+                                                Add Need!
                                             </Typography>
                                             <TextField
                                                 autoComplete="needTitle"
