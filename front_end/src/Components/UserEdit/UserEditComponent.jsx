@@ -2,7 +2,10 @@ import React from "react"
 import axiosInstance from "../../Axios/Axios"
 import { USER_EDIT_API_ENDPOINT } from "../../Utils/utils"
 import { USER_DATA_API_ENDPOINT } from "../../Utils/utils"
-import { Typography, Divider, TextField, Button } from "@material-ui/core"
+import { Typography, TextField, Button, Container, withStyles, Avatar, FormControl, InputLabel, Select, MenuItem } from "@material-ui/core"
+import { editUserStyles } from "./EditUserStyles";
+import AppBarComponent from "../AppBar/AppBarComponent";
+import { Redirect } from "react-router-dom";
 
 let userId = localStorage.getItem("authToken");
 let Lastname = "";
@@ -21,7 +24,8 @@ class UserEditComponent extends React.Component {
                 "email" : "default",
                 "telephone" : "default",
                 "address"  : "default"
-            }]
+            }],
+            redirect : false
         } 
     }
   
@@ -32,7 +36,10 @@ class UserEditComponent extends React.Component {
      /**POST */ // Send the updated data 
     updateUser = () => {
       axiosInstance.put(USER_EDIT_API_ENDPOINT + '/' + userId, {"Lastname": this.state.user.lastname, "Firstname": this.state.user.firstname, "Email" : this.state.user.email, "Telephone" : this.state.user.telephone, "Address" : this.state.user.address}).then(() => {
-        })
+        })   
+        document.getElementById("successLabel").style.visibility = "visible";
+        setTimeout(() => this.setState({ redirect: "/dashboard" }), 2000);   
+      
     }
 
 
@@ -41,7 +48,11 @@ class UserEditComponent extends React.Component {
             this.setState({
                 user: response.data
             })
-          
+            Lastname = response.data.lastname;
+            Firstname = response.data.firstname;
+            Email = response.data.email;
+            Telephone = response.data.telephone;
+            Address = response.data.address;
         });
     }
   
@@ -65,8 +76,7 @@ class UserEditComponent extends React.Component {
                 email : Email,
                 telephone : Telephone,
                 address  : Address,
-            }});
-        
+            }});      
     }
 
     setEmail = (event) => {
@@ -101,29 +111,135 @@ class UserEditComponent extends React.Component {
             address  : event.target.value,
         }});
     }
+    isTokenExpired = token => {
+        if (token === null) return false;
+        return true;
+      };
+
 
     render() {
-            return (
-                <React.Fragment>
-    
-                    <Typography variant="h4">Edit User</Typography>
+        if (this.isTokenExpired(localStorage.getItem("authToken")) === false) {
+            return <Redirect to="/login" />;
+        }
+        const { classes } = this.props;
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+        }
+        return (
+            <React.Fragment>
+            <AppBarComponent></AppBarComponent>
+            <Container component="main" maxWidth="xs">
+                <div className={classes.paper}>
 
-                    <Divider></Divider>               
-                    <br></br><br></br>
+                    {//TODO add here volunteer logo
+                    }
+                    <Avatar className={classes.avatar}>
+                        VN
+                     </Avatar>
 
-                    <Divider></Divider>
-                               
-                    <TextField id="outlined-basic" label="Firstname" variant="outlined" value={this.state.user.firstname} onChange={this.setFirstname} />
-                    <TextField id="outlined-basic" label="Lastname" variant="outlined" value={this.state.user.lastname} onChange={this.setLastname} />
-                    <TextField id="outlined-basic" label="Email" variant="outlined" value={this.state.user.email} onChange={this.setEmail} />
-                    <TextField id="outlined-basic" label="Telephone" variant="outlined" value={this.state.user.telephone} onChange={this.setTelephone} />
-                    <TextField id="outlined-basic" label="Adress" variant="outlined" value={this.state.user.address} onChange={this.setAddress} />
-                   
-                    <Button onClick={this.UpdateUser}>Submit changes</Button>    
-                </React.Fragment>
+                    <Typography component="h5" variant="h5">
+                        Update your information!
+                    </Typography>
+                    <div className={classes.form} noValidate>
+
+                        <TextField
+                                autoComplete="fname"
+                                name="firstName"
+                                margin="normal"
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="firstName"
+                                label="First Name"
+                                autoFocus
+                                value={this.state.user.firstname}
+                                defaultValue = "default"
+                                onChange={this.setFirstname}
+                            />
+
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                margin="normal"
+                                id="lastName"
+                                label="Last Name"
+                                name="lastName"
+                                autoComplete="lname"
+                                value={this.state.user.lastname}
+                                defaultValue = "default"
+                                onChange={this.setLastname}
+                            />
+
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="email"
+                                label="Email Address"
+                                name="email"
+                                autoComplete="email"
+                                value={this.state.user.email}
+                                defaultValue = "default"                 
+                                onChange={this.setEmail}
+                            />
+
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="phone"
+                                label="Phone"
+                                name="phone"
+                                type="number"
+                                autoComplete="phone"
+                                value = {this.state.user.telephone}    
+                                defaultValue = "0"             
+                                onChange={this.setTelephone}
+                            />  
+
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="adress"
+                                label="Address"
+                                name="adress"
+                                autoComplete="address"
+                                value={this.state.user.address} 
+                                defaultValue = "default"                    
+                                onChange={this.setAddress}
+                            />
+                            
+                            <Button
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={editUserStyles}
+                            onClick={this.updateUser}   
+                            >
+                            Save
+                            </Button>
+                            <Typography 
+                                id = "successLabel"
+                                component = "h5" 
+                                variant = "h5" 
+                                align = "center"
+                                style={{visibility: 'hidden'}}
+                                >
+                                Your information has been updated!
+                            </Typography>
+                    </div>
+                </div>
+
+            </Container>
+            </React.Fragment>
+
             )
         }
 }
 
-export default UserEditComponent
-
+export default withStyles(editUserStyles)(UserEditComponent)

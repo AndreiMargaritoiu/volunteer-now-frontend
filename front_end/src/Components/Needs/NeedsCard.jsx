@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 
 const NeedsCard = props => {
     return props.cards.map(card => (
+        
         <React.Fragment>
             <br></br>
             <Card>
@@ -23,6 +24,14 @@ const NeedsCard = props => {
 
                     <Typography color="textPrimary">
                         {card.date}
+                    </Typography>
+
+                    <Typography color="primary">
+                        {card.state}
+                    </Typography>
+
+                    <Typography color="secondary">
+                       {card.city}
                     </Typography>
 
                 </CardContent>
