@@ -5,39 +5,31 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { Redirect } from "react-router-dom";
 
 
 class AppBarComponent extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            redirect: null
-        }
+       
     }
 
     update = () => {
-        this.setState({ 
-            redirect: "/user/edit",
-            updatebtn: true
-        });     
+        window.location.href = "/user/edit"   
     }
 
     logout = () => {
         localStorage.clear();
-        this.setState({ redirect: "/login" });
+        window.location.href = "/login"
     }
 
     goHome = () => {
-        this.setState({ redirect: "/dashboard" });
+        window.location.href = "/dashboard"
     }
 
     render() {
         const { classes } = this.props;
-        if (this.state.redirect) {
-            return <Redirect to={this.state.redirect} />
-        }
+       
         return (
             <AppBar position="static">
                 <Toolbar>

@@ -75,7 +75,6 @@ class NeedsComponentVolunteer extends React.Component {
     }
 
     render() {
-        console.log(this.state.needs)
         return (
             <React.Fragment>
                 <Typography variant="h4">Volunteer dashboard</Typography>
