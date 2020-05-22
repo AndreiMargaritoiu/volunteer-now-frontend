@@ -62,7 +62,7 @@ class NeedsComponentNevoias extends React.Component {
     saveCard = () => {   
         axiosInstance.put(NEEDS_API_ENDPOINT + '/' + idToUpdate, {
             "title": this.state.need.title, "description": this.state.need.description}).then(() => {
-                alert("Need updated successfully");
+            
                 this.refreshCards()
                 this.setState({ show: false });
         }).then(() => this.setState({openModal: false}))

@@ -27,9 +27,10 @@ class FABComponent extends React.Component {
     }
 
     createNeed = () => {
-        axiosInstance.post(NEEDS_API_ENDPOINT + '/' + userId, {"Title": this.Title, "Description": this.Description})
+        axiosInstance.post(NEEDS_API_ENDPOINT + '/' + localStorage.getItem("authToken"), {"Title": this.Title, "Description": this.Description})
         .then(() => {
             this.setState({openModal : false});
+            window.location.reload(false)
         })
     }
 
