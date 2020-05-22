@@ -43,23 +43,33 @@ class NeedsComponentVolunteer extends React.Component {
             this.setState({
                 assignatedNeeds: response.data
             })
-        });
+        })
         axiosInstance.get(NEEDS_API_ENDPOINT + "/get/done/" + this.uid).then(response => {
             this.setState({
                 doneNeeds: response.data
             })
-        });
+        })
     }   
 
     assignCard = (cardid) => {
         axiosInstance.put(REGISTER_API_ENDPOINT + "/assign/" + this.uid + "/" + cardid).then(() => {
            this.refreshCards()
         });
+
+    
+ 
     }
 
     dropCard = (cardid) => {
         console.log("card dropped");
         axiosInstance.put(REGISTER_API_ENDPOINT + "/unassign/" + this.uid + "/" + cardid).then(() => {
+            this.refreshCards()
+         });
+    }
+
+    doneCard = (cardid) => {
+        console.log("card done");
+        axiosInstance.put(REGISTER_API_ENDPOINT + "/done/" + this.uid + "/" + cardid).then(() => {
             this.refreshCards()
          });
     }
@@ -71,7 +81,7 @@ class NeedsComponentVolunteer extends React.Component {
                 <Typography variant="h4">Volunteer dashboard</Typography>
                 <Divider></Divider>
                 <Typography variant="h6">Assigned needs</Typography>
-                <NeedsCard cards={this.state.assignatedNeeds} dropCard={this.dropCard}></NeedsCard>
+                <NeedsCard cards={this.state.assignatedNeeds} dropCard={this.dropCard} doneCard={this.doneCard}></NeedsCard>
                 <Divider></Divider>
                 <Typography variant="h6">Unassigned needs</Typography>
                 <NeedsCard cards={this.state.needs} assignCard={this.assignCard}></NeedsCard>
@@ -84,5 +94,6 @@ class NeedsComponentVolunteer extends React.Component {
     }
 
 }
+
 
 export default NeedsComponentVolunteer

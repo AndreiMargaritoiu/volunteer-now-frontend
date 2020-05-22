@@ -70,12 +70,20 @@ const NeedsCard = props => {
 
                     <React.Fragment>
 
-                    <Button size="small" onClick={() => props.updateCard(card.id)}>Update</Button>
-                    <Button size="small" onClick={() => props.deleteCard(card.id)}>Delete</Button>
+                        <Button size="small" onClick={() => props.updateCard(card.id)}>Update</Button>
+                        <Button size="small" onClick={() => props.deleteCard(card.id)}>Delete</Button>
 
                     </React.Fragment>
 
-                :   <React.Fragment></React.Fragment>
+                : card.state === "Assigned" ?
+
+                    <React.Fragment>                    
+                      
+                      <Button size="small" onClick={() => props.deleteCard(card.id)}>Delete</Button>
+
+                    </React.Fragment>
+
+                : <React.Fragment></React.Fragment>
 
             }
 
@@ -88,6 +96,7 @@ const NeedsCard = props => {
     )
 
 };
+
 
 
 export default NeedsCard;

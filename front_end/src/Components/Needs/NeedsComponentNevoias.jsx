@@ -20,6 +20,10 @@ class NeedsComponentNevoias extends React.Component {
             need: [{
                 "title" : "default",
                 "description" : "default"
+            }],
+            doneNeed: [{
+                "title" : "default",
+                "description" : "default"
             }]
         }
     }
@@ -34,7 +38,12 @@ class NeedsComponentNevoias extends React.Component {
             this.setState({
                 needs: response.data
             })
-        });
+        })
+        axiosInstance.get(NEEDS_API_ENDPOINT + "/getDone/" + this.uid).then(response => {
+            this.setState({
+                doneNeed: response.data
+            })
+        })
     }
 
     updateCard = (cardid) => {
@@ -94,6 +103,7 @@ class NeedsComponentNevoias extends React.Component {
             <React.Fragment>
                 <Typography variant="h4">Nevoias dashboard</Typography>
                 <Divider></Divider>
+                <Typography variant="h6">Ongoing needs</Typography>
                 <NeedsCard cards={this.state.needs} updateCard={this.updateCard} deleteCard={this.deleteCard}></NeedsCard>
                 { this.state.openModal ? 
                     <Container component="main" maxWidth="xs">   
@@ -163,11 +173,15 @@ class NeedsComponentNevoias extends React.Component {
                 </Container> 
                 : 
                 null}
-                <br />
+                <Divider></Divider>
+                <Typography variant="h6">Delivered needs</Typography>
+                <NeedsCard cards={this.state.doneNeed}  deleteCard={this.deleteCard}></NeedsCard>
+
             </React.Fragment>
         )
     }
     
 }
+
 
 export default NeedsComponentNevoias
