@@ -87,7 +87,6 @@ class DonationComponent extends React.Component {
                 
                 
                 <Container component="main" maxWidth="xs">
-                    
                 <div className={classes.paper} style={divStyle}>
                 <Avatar
                             alt="Remy Sharp"
