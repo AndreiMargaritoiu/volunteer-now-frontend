@@ -9,6 +9,7 @@ import AppBarComponent from "../AppBar/AppBarComponent";
 import { Redirect } from "react-router-dom";
 import Logo from "../../Images/logo2.png";
 import "./EditUserCSS.css";
+import Background from "../../Images/background1.png";
 
 
 let userId = localStorage.getItem("authToken");
@@ -123,6 +124,7 @@ class UserEditComponent extends React.Component {
         }
         return (
             <div className="main3">
+            <img src={Background} id="bg" alt=""></img>
             <AppBarComponent></AppBarComponent>
             <React.Fragment>
             <Container component="main" maxWidth="xs">
@@ -135,7 +137,7 @@ class UserEditComponent extends React.Component {
                         />
 
                     <Typography component="h5" variant="h5">
-                        Update your information!
+                        Update your information
                     </Typography>
                     <div className={classes.form} noValidate>
 

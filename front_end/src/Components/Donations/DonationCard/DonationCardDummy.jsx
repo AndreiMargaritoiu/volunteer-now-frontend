@@ -2,16 +2,20 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-
+import { Typography, TextField, Button, Container, withStyles, Avatar, FormControl, InputLabel, Select, MenuItem } from "@material-ui/core"
+import { donationCardStyles } from "./DonationsCardStyles";
+import { divStyle } from "./DonationsCardStyles";
+import "./DonationsCardCSS.css"
 
 const DonationCardDummy = props => {
+
     return props.cards.map(card => (
         <React.Fragment>
-            <br></br>
-            <Card>
-
+    
+            
+                <div style={divStyle}>
+            <Card className = {props.classes.cards}>
+        
                 <CardContent>
 
                     <Typography color="textPriamry" gutterBottom>
@@ -29,20 +33,54 @@ const DonationCardDummy = props => {
                 </CardContent>
 
                 <CardActions>
-
-                    <Button size="small" onClick={() => props.changeSum(card, 50)}>Donate 50</Button>
-                    <Button size="small" onClick={() => props.changeSum(card, 100)}>Donate 100</Button>
-                    <Button size="small" onClick={() => props.changeSum(card, 150)}>Donate 150</Button>
-                    <Button size="small" onClick={() => props.deleteCard(card.id)}>Delete</Button>
-
+                <div className="main4">
+                    <Button  className = {props.classes.submit3}
+                        style = {
+                            {
+                                maxWidth: '70px', maxHeight: '35px', minWidth: '70px', minHeight: '35px',
+                                color: "#e8e2da",
+                                 
+                            }}
+                        variant="contained"
+                        onClick={() => props.changeSum(card, 50)}>
+                        $50
+                    </Button>
+                    <Button className = {props.classes.submit3}
+                        style = {
+                            {
+                                maxWidth: '70px', maxHeight: '35px', minWidth: '70px', minHeight: '35px',
+                                color: "#e8e2da",
+                                
+                            }}
+                        variant="contained"
+                        onClick={() => props.changeSum(card, 100)}>
+                        $100
+                    </Button>
+                    <Button className = {props.classes.submit3}
+                        style = {
+                            {
+                                maxWidth: '70px', maxHeight: '35px', minWidth: '70px', minHeight: '35px',
+                                color: "#e8e2da",
+                                 
+                            }}
+                        
+                        variant="contained"
+                        onClick={() => props.changeSum(card, 150)}>
+                    $150
+                    </Button>
+                </div>
                 </CardActions>
-
+ 
             </Card>
+            </div>
+            
+
         </React.Fragment>
+
     )
     )
 
 };
 
 
-export default DonationCardDummy;
+export default withStyles(donationCardStyles)(DonationCardDummy);

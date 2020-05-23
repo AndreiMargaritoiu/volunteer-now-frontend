@@ -8,6 +8,7 @@ import base64 from 'react-native-base64'
 import { divStyle } from "./RegisterStyles";
 import "./RegisterCSS.css";
 import Logo from "../../Images/logo2.png";
+import Background from "../../Images/background1.png";
 
 let lastname = "";
 let firstname = "";
@@ -98,6 +99,7 @@ class RegisterComponent extends React.Component {
         }
         return (
             <div className="main2">
+                 <img src={Background} id="bg" alt=""></img>
                 <Container component="main" maxWidth="xs">
                     <br></br>
                     <div className={classes.paper} style={divStyle}>
