@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 
 const NeedsCard = props => {
     return props.cards.map(card => (
-        
+
         <React.Fragment>
             <br></br>
             <Card>
@@ -37,20 +37,58 @@ const NeedsCard = props => {
                 </CardContent>
 
             </Card>
-
+            
             { localStorage.getItem("userType") === "volunteer" ?
+
                 <CardActions>
 
-                    <Button size="small" onClick={() => props.assignCard(card.id)}>Assign</Button>
+            {card.state === "Assigned" ?
+                    <React.Fragment>
+
+                    <Button size="small" onClick={() => props.dropCard(card.id)}>Drop</Button>
+                    <Button size="small" onClick={() => props.doneCard(card.id)}>Done</Button>
+
+                    </React.Fragment>
+
+                : card.state  === "Unassigned" ?
+
+                    <React.Fragment>
+
+                     <Button size="small" onClick={() => props.assignCard(card.id)}>Assign</Button>
+
+                    </React.Fragment>
+
+                :   <React.Fragment></React.Fragment>
+
+                }
 
                 </CardActions>
             :
                 <CardActions>
 
-                    <Button size="small" onClick={() => props.updateCard(card.id)}>Update</Button>
-                    <Button size="small" onClick={() => props.deleteCard(card.id)}>Delete</Button>
+                {card.state === "Unassigned" ?
+
+                    <React.Fragment>
+
+                        <Button size="small" onClick={() => props.updateCard(card.id)}>Update</Button>
+                        <Button size="small" onClick={() => props.deleteCard(card.id)}>Delete</Button>
+
+                    </React.Fragment>
+
+                : card.state === "Assigned" ?
+
+                    <React.Fragment>                    
+                      
+                      <Button size="small" onClick={() => props.deleteCard(card.id)}>Delete</Button>
+
+                    </React.Fragment>
+
+                : <React.Fragment></React.Fragment>
+
+            }
 
                 </CardActions>
+
             }
             
         </React.Fragment>
@@ -58,6 +96,7 @@ const NeedsCard = props => {
     )
 
 };
+
 
 
 export default NeedsCard;

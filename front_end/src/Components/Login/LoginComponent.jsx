@@ -15,8 +15,9 @@ import { loginStyles } from "./LoginStyles";
 import { divStyle } from "./LoginStyles";
 import { Redirect } from "react-router-dom";
 import base64 from "react-native-base64";
-import "./LoginCSS.css";
+import "./LoginStyles.css";
 import Logo from "../../Images/logo2.png";
+
 let email = "";
 let password = "";
 
@@ -26,6 +27,7 @@ class LoginComponent extends React.Component {
     this.state = {
       redirect: null,
       checker: false,
+      checkerPass: false,
     };
   }
 
@@ -40,39 +42,26 @@ class LoginComponent extends React.Component {
           this.setState({
             user: JSON.parse(base64.decode(response.data)),
           });
-          if (this.state.user["Error"] === "user not found") {
-            alert("User does not exist!");
-            this.setChecker();
-          } else if (this.state.user["Error"] === "wrong password")
-            alert("Wrong password!");
-          else {
+         
             const user = this.state.user.Id + " " + this.state.user.Type;
-            alert("User " + user + " logged in successfully");
+
             localStorage.setItem("authToken", this.state.user.Id);
             localStorage.setItem("userType", this.state.user.Type);
             this.setState({ redirect: "/dashboard" });
-          }
+          
         })
         .catch((error) => {
-          alert(error);
+          this.setChecker();
         });
     }
   };
 
+
   setChecker = () => {
     this.setState({
       checker: true,
-    })
-      .then((response) => {
-        if (response.data == "user not found") {
-          alert("User does not exist!");
-          this.setRedirect();
-        } else if (response.data == "wrong password") alert("Wrong password!");
-        else alert("User " + response.data + " logged in successfully");
-      })
-      .catch((error) => {
-        alert(error);
-      });
+    });
+      
   };
 
   getEmail = (event) => {
@@ -93,18 +82,7 @@ class LoginComponent extends React.Component {
         <Container component="main" maxWidth="xs">
           <br></br>
           <div className={classes.paper} style={divStyle}>
-            {
-              //TODO add here volunteer logo?
-            }
-            {/* <Avatar className={classes.avatar}>
-                        VN
-                    </Avatar>
-                    <img src = "../../Images/logo.png"/> */}
-            <Avatar
-              alt="Remy Sharp"
-              src={Logo}
-              className={classes.large}
-            />
+            <Avatar alt="Remy Sharp" src={Logo} className={classes.large} />
 
             <Typography component="h1" variant="h5">
               Sign in
@@ -123,7 +101,7 @@ class LoginComponent extends React.Component {
                 onChange={this.getEmail}
               />
               <TextField
-                classes = {{label: classes.label}}
+                classes={{ label: classes.label }}
                 variant="outlined"
                 margin="normal"
                 required
@@ -134,9 +112,8 @@ class LoginComponent extends React.Component {
                 id="password"
                 autoComplete="current-password"
                 onChange={this.getPassword}
-                className = {classes.input}
-                color = "white"
-                
+                className={classes.input}
+                color="white"
               />
               <Button
                 fullWidth
@@ -147,7 +124,7 @@ class LoginComponent extends React.Component {
               >
                 Sign In
               </Button>
-              
+
               <Button
                 fullWidth
                 variant="outlined"
@@ -158,18 +135,16 @@ class LoginComponent extends React.Component {
               >
                 Don't have an account yet? Register instead.
               </Button>
-              
+
               <Grid container>
                 <Grid>
                   {this.state.checker ? (
                     <div>
-                      <Link href="/register">
-                        <Typography color="secondary">
-                          Don't have an account yet?
-                        </Typography>
-                      </Link>
+                      <Typography color="secondary" className={classes.text}>
+                        Wrong email address or password.
+                      </Typography>
                     </div>
-                  ) : null}
+                  )  : null}
                 </Grid>
               </Grid>
             </div>
