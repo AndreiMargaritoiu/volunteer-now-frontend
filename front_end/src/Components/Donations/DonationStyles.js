@@ -52,6 +52,5 @@ export const divStyle = {
   backgroundColor: "white",
   borderRadius: "10px",
   padding: "50px",
-  
-  
+  width: "18vw"
 }

@@ -13,7 +13,7 @@ const DonationCardDummy = props => {
         <React.Fragment>
     
             
-                <div style={divStyle}>
+                
             <Card className = {props.classes.cards}>
         
                 <CardContent>
@@ -72,7 +72,7 @@ const DonationCardDummy = props => {
                 </CardActions>
  
             </Card>
-            </div>
+         
             
 
         </React.Fragment>

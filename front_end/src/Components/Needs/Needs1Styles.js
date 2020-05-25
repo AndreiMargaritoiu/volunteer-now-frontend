@@ -1,4 +1,4 @@
-export const fabStyle = theme => ({
+export const needs1Style = theme => ({
     root: {
         flexGrow: 1,
     },
@@ -58,7 +58,5 @@ export const divStyle = {
     padding: 24,
     backgroundColor: "white",
     borderRadius: "10px",
-    padding: "50px",
-    
-    
+    padding: "50px",  
 }

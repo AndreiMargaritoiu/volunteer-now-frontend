@@ -105,7 +105,9 @@ class DonationComponent extends React.Component {
                     you want to support and letting us know
                     about the purpose of your donation.
                 </Typography>
+                <div style={divStyle}>
                 <DonationCardDummy classes = {classes} cards={this.state.donations} changeSum={this.changeSum}></DonationCardDummy>
+                </div>
                 <div className={classes.form} noValidate>
                 <TextField id="outlined-basic" 
                             label="Title"
