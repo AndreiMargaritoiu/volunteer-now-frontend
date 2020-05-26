@@ -2,12 +2,14 @@ import React from "react"
 import { fabStyle } from "./FABStyles";
 import { Fab, withStyles } from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
-import { Typography, Divider, TextField, Button, Modal, Container, Avatar } from "@material-ui/core"
+import { Typography, Divider, TextField, Button, Modal, Container, Avatar, Snackbar } from "@material-ui/core"
 import axiosInstance from "../../../Axios/Axios"
 import './FABStylesCSS.css';
 import { NEEDS_API_ENDPOINT } from "../../../Utils/utils";
 import Logo from "../../../Images/logo2.png";
 import { divStyle } from "./FABStyles";
+import MuiAlert from '@material-ui/lab/Alert';
+
 
 let userId = localStorage.getItem("authToken");
 
@@ -16,8 +18,14 @@ class FABComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            openModal: false
+            openModal: false,
+            snackbar: {
+                open: false,
+                message: ""
+            }
+
         }
+
     }
 
     openModal = () => {
@@ -31,9 +39,16 @@ class FABComponent extends React.Component {
     createNeed = () => {
         axiosInstance.post(NEEDS_API_ENDPOINT + '/' + localStorage.getItem("authToken"), { "Title": this.Title, "Description": this.Description })
             .then(() => {
-                this.setState({ openModal: false });
-                window.location.reload(false)
+                this.setState({
+                    snackbar: {
+                        open: true,
+                        message: "Succesfully created"
+                    }
+                })
+
             })
+
+
     }
 
     setTitle = (event) => {
@@ -43,6 +58,20 @@ class FABComponent extends React.Component {
     setDescription = (event) => {
         this.Description = event.target.value;
     }
+
+    handleClose = () => {
+        this.setState({
+            snackbar: {
+                open: false,
+                message: ""
+            },
+            openModal:false
+            
+        })
+        window.location.reload(false)
+
+    }
+
 
     render() {
         const { classes } = this.props;
@@ -120,10 +149,10 @@ class FABComponent extends React.Component {
                                                     color: "#6291b0",
                                                     borderColor: "#6291b0",
                                                     textTransform: "initial",
-                                                  }}
-                                                  className={classes.submit2}  
+                                                }}
+                                                className={classes.submit2}
                                                 fullWidth
-                                                variant= "outlined"
+                                                variant="outlined"
                                             >
                                                 Cancel
                                             </Button>
@@ -134,6 +163,11 @@ class FABComponent extends React.Component {
                             </Modal>
                         </div>
                     </Container>
+                    <Snackbar open={this.state.snackbar.open} autoHideDuration={1000} onClose={this.handleClose}>
+                        <MuiAlert elevation={6} variant="filled" onClose={this.handleClose} severity="success">
+                            {this.state.snackbar.message}
+                        </MuiAlert>
+                    </Snackbar>
                 </React.Fragment>
             )
         }
