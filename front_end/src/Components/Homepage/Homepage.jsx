@@ -75,8 +75,9 @@ class Homepage extends React.Component {
             <div class="buttonDiv">
               <Grid container justify="center">
                 <Grid item>
-                  <a href="./login" target="_self">
+               
                     <Button
+                    href="./login"
                       style={{
                         minWidth: "300px",
                         minHeight: "50px",
@@ -91,7 +92,7 @@ class Homepage extends React.Component {
                       {" "}
                       Join Now
                     </Button>
-                  </a>
+                
                 </Grid>
               </Grid>
             </div>

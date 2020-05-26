@@ -130,7 +130,7 @@ class LoginComponent extends React.Component {
                 color="primary"
                 href="./register"
                 className={classes.submit1}
-                // onClick={this.login}
+               
               >
                 Don't have an account yet? Register instead.
               </Button>

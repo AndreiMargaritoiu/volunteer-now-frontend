@@ -1,6 +1,6 @@
 import Background from "../../Images/background1.png"
 
-export const editUserStyles = theme => ({
+export const donationStyles = theme => ({
   paper: {
     marginTop: theme.spacing(4),
     display: 'flex',
@@ -23,6 +23,12 @@ export const editUserStyles = theme => ({
     color: '#FFF'
 }
   },
+  submit2: {
+    margin: theme.spacing(7, 5, 3),
+    '&:hover':{
+    color: '#FFF'
+} 
+  },
   notchedOutline: {
     borderColor: "#6291b0 !important",
   },
@@ -35,6 +41,10 @@ export const editUserStyles = theme => ({
     width: theme.spacing(7),
     height: theme.spacing(7),
   },
+  cards: {
+    backgroundColor: "#e8e2da",
+
+  },
 });
 export const divStyle = {
   flex: 1,
@@ -42,6 +52,5 @@ export const divStyle = {
   backgroundColor: "white",
   borderRadius: "10px",
   padding: "50px",
-  
-  
+  width: "18vw"
 }

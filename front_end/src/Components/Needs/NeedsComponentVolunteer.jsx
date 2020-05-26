@@ -2,12 +2,14 @@ import React from "react"
 import axiosInstance from "../../Axios/Axios"
 import { NEEDS_API_ENDPOINT } from "../../Utils/utils"
 import { REGISTER_API_ENDPOINT } from "../../Utils/utils"
-import { Typography, Divider } from "@material-ui/core"
+import { Typography, Divider, Snackbar } from "@material-ui/core"
 import NeedsCard from "./NeedsCard"
 import Component from "./NeedsCard";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import MuiAlert from '@material-ui/lab/Alert';
 
 const muiBaseTheme = createMuiTheme();
+
 
 
 
@@ -29,7 +31,11 @@ class NeedsComponentVolunteer extends React.Component {
             doneNeeds: [{
                 "title" : "default",
                 "description" : "default"
-            }]
+            }],
+            snackbar:{
+                open:false,
+                message:"Default message"
+            }
 
         }
     }
@@ -61,8 +67,13 @@ class NeedsComponentVolunteer extends React.Component {
         axiosInstance.put(REGISTER_API_ENDPOINT + "/assign/" + this.uid + "/" + cardid).then(() => {
            this.refreshCards()
         });
+        this.setState({
+            snackbar: {
+                open: true,
+                message: "Need assigned"
+            }
+        })
 
-    
  
     }
 
@@ -71,6 +82,13 @@ class NeedsComponentVolunteer extends React.Component {
         axiosInstance.put(REGISTER_API_ENDPOINT + "/unassign/" + this.uid + "/" + cardid).then(() => {
             this.refreshCards()
          });
+         this.setState({
+            snackbar: {
+                open: true,
+                message: "Need dropped"
+            }
+        })
+         
     }
 
     doneCard = (cardid) => {
@@ -78,6 +96,21 @@ class NeedsComponentVolunteer extends React.Component {
         axiosInstance.put(REGISTER_API_ENDPOINT + "/done/" + this.uid + "/" + cardid).then(() => {
             this.refreshCards()
          });
+         this.setState({
+            snackbar: {
+                open: true,
+                message: "Need done!"
+            }
+        })
+    }
+
+     handleClose = () =>{
+        this.setState({
+            snackbar: {
+                open: false,
+                message: ""
+            }
+        })
     }
 
     render() {
@@ -102,6 +135,13 @@ class NeedsComponentVolunteer extends React.Component {
                 <Typography variant="h6">Done needs</Typography>
                 <NeedsCard cards={this.state.doneNeeds}></NeedsCard>
                 </MuiThemeProvider>
+                
+                <Snackbar open={this.state.snackbar.open} autoHideDuration={3000} onClose={this.handleClose}>
+                    <MuiAlert elevation={6} variant="filled" onClose={this.handleClose} severity="success">
+                        {this.state.snackbar.message}
+                    </MuiAlert>
+                </Snackbar>
+
             </React.Fragment>
         )
     }
