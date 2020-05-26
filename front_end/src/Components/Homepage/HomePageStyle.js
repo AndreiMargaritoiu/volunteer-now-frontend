@@ -1,6 +1,6 @@
-import imageVol from "../../Images/volunteer.png";
-import imageNeed from "../../Images/need.png";
-import imageDon from "../../Images/donor.png";
+import Volunteer from "../../Images/volunteer1.png"
+import Donor from "../../Images/donor1.png"
+import Person from "../../Images/person1.png"
 
 export const stylesHomepage = (theme) => ({
   popover: {
@@ -39,17 +39,29 @@ export const stylesHomepage = (theme) => ({
 
 export const tileData = [
   {
-    img: imageVol,
-    title: "volunteer",
+
+            letter : "V",
+            image : Volunteer,
+            title : "Volunteer",
+            short : "A simple act of kindness always brings up another. Join our team now and help those in need. ",
+            long : "Sign up and become a volunteer to help people with:  \n - Financial issues \n - Running errands \n - Shopping for food/med supplies \n - Pet supply"
   },
 
   {
-    img: imageDon,
-    title: "donor",
+    letter : "D",
+    image : Donor,
+    title : "Donor",
+    short : "Not all heroes have superpowers, some have money. Donate now to charities and help in critical times. ",
+    long : "You do not have enough time, but you want to help as well? Scroll down and find the Donate button directly. You will help with: \n - Providing med supplies/food\n - Bills and rent payment \n No Sign up needed for this step.  "
   },
 
   {
-    img: imageNeed,
-    title: "need",
+            letter : "P",
+             image : Person,
+             title : "Person in Need",
+             short : "We are here to help you get through difficult times. Tell us your needs and we'll be handling it in no time.",
+             long : "Sign up and become a normal user to add your needs so we can see them and proceed to help as fast as possible. "
+             + "We will help with: \n - Running errands \n - Delivery services \n - Pet support"
   },
 ];
+

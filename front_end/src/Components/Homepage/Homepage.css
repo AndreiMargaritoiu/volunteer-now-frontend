@@ -24,35 +24,25 @@ div.buttonDiv {
 
 h1 {
   font-family: "Six Caps";
-  font-size: 12vw;
-  font-style: normal;
-  font-variant: normal;
+  font-size: 150px;
   font-weight: 200;
-  line-height: 26.4px;
+
 }
 h2 {
   font-family: "Trebuchet MS";
-  font-size: 2vw;
   font-style: italic;
-  font-variant: normal;
   font-weight: 200;
-  line-height: 26.4px;
+  font-size: 20px;
+  
 }
-div.title {
-  margin: 0;
-  position: absolute;
-  left: 22%;
-  top: 32%;
-  right: 22%;
-}
+
 div.subtitle {
   margin: 0;
   position: absolute;
   left: 37%;
   right: 30%;
   top: 73%;
-  animation-name: fadein;
-  animation-duration: 4s;
+  
 }
 @keyframes fadein {
   from {
@@ -63,16 +53,7 @@ div.subtitle {
   }
 }
 
-footer.Footer {
-  margin: 0;
 
-  background-color: #e8e2da;
-}
-
-.photo {
-  width: 400px;
-  height: 400px;
-}
 a:link,
 a:visited,
 a:hover,
@@ -81,3 +62,24 @@ a:active {
   text-emphasis-color: none;
   background-color: none;
 }
+
+
+
+
+.centered {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bottom-right {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-name: fadein;
+  animation-duration: 4s;
+}
+
+

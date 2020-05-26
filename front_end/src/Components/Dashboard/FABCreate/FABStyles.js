@@ -9,6 +9,13 @@ export const fabStyle = theme => ({
         bottom: theme.spacing(3),
         right: theme.spacing(3),
         position: 'fixed',
+        backgroundColor: "#d9c1bb",
+        color : "#ffffff",
+        '&:hover':{
+          
+            backgroundColor: '#6291b0',
+            borderColor: "#6291b0"
+        }
     
     },
     paper: {
@@ -52,10 +59,11 @@ export const fabStyle = theme => ({
         height: theme.spacing(7),
       },
 
+
 });
+
 export const divStyle = {
     flex: 1,
-    padding: 24,
     backgroundColor: "white",
     borderRadius: "10px",
     padding: "50px",

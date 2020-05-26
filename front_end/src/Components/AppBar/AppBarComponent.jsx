@@ -5,14 +5,14 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-
+import Logo from "../../Images/logo8.png";
 
 class AppBarComponent extends React.Component {
 
-    constructor(props) {
-        super(props);
+    // constructor(props) {
+    //     super(props);
        
-    }
+    // }
 
     update = () => {
         window.location.href = "/user/edit"   
@@ -21,6 +21,10 @@ class AppBarComponent extends React.Component {
     logout = () => {
         localStorage.clear();
         window.location.href = "/login"
+    }
+    donate = () => {
+        localStorage.clear();
+        window.location.href = "/donations"
     }
 
     goHome = () => {
@@ -31,10 +35,13 @@ class AppBarComponent extends React.Component {
         const { classes } = this.props;
        
         return (
-            <AppBar position="static">
+            <AppBar style={{ background: '#84a8c0' }} position="static">
                 <Toolbar>
-                    <Avatar edge="start" className={classes.avatar} onClick={this.goHome}>VN</Avatar>
-                    <Typography variant="h6" className={classes.title}></Typography>
+                   
+                    <Typography variant="h6" className={classes.title}>
+                        <Avatar edge="start"  src ={Logo} className={classes.avatar1} onClick={this.goHome} ></Avatar>
+                    </Typography>
+                    <Button color="inherit"onClick={this.donate} className={classes.submit}>Donate</Button>
                     <Button color="inherit" onClick={this.update} className={classes.submit}>Update Profile</Button>
                     <Button color="inherit"onClick={this.logout} className={classes.submit}>Logout</Button>
                 </Toolbar>

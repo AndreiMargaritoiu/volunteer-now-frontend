@@ -6,7 +6,6 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import MainComponent from "./Components/MainComponent";
 import DonationComponent from "./Components/Donations/DonationComponent";
 import Homepage from "./Components/Homepage/Homepage";
 import UserEditComponent from "./Components/UserEdit/UserEditComponent";

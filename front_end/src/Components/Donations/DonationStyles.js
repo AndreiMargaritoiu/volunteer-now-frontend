@@ -1,4 +1,4 @@
-import Background from "../../Images/background1.png"
+
 
 export const donationStyles = theme => ({
   paper: {
@@ -48,7 +48,6 @@ export const donationStyles = theme => ({
 });
 export const divStyle = {
   flex: 1,
-  padding: 24,
   backgroundColor: "white",
   borderRadius: "10px",
   padding: "50px",

@@ -1,8 +1,10 @@
 import React from "react"
 import axiosInstance from "../../Axios/Axios"
 import { NEEDS_API_ENDPOINT } from "../../Utils/utils"
-import { Typography, Divider, TextField, Button, Modal, Container, Avatar, withStyles, Snackbar } from "@material-ui/core"
 import NeedsCard from "./NeedsCard"
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import Component from "./NeedsCard";
+import { Typography, Divider, TextField, Button, Modal, Container, Avatar, withStyles, Snackbar } from "@material-ui/core"
 import Logo from "../../Images/logo2.png";
 import { divStyle } from "./Needs1Styles";
 import { needs1Style } from "./Needs1Styles";
@@ -11,6 +13,8 @@ import MuiAlert from '@material-ui/lab/Alert';
 let Title = "";
 let Description = "";
 let idToUpdate = "";
+const muiBaseTheme = createMuiTheme();
+
 
 class NeedsComponentNevoias extends React.Component {
 
@@ -135,7 +139,15 @@ class NeedsComponentNevoias extends React.Component {
         const { classes } = this.props;
         return (
             <React.Fragment>
-                <Typography variant="h4">Nevoias dashboard</Typography>
+                <MuiThemeProvider 
+            theme={createMuiTheme({
+              typography: {
+                useNextVariants: true,
+              },
+              overrides: Component.getTheme(muiBaseTheme),
+            })}
+          >
+                <Typography variant="h4">Dashboard</Typography>
                 <Divider></Divider>
                 <Typography variant="h6">Ongoing needs</Typography>
                 <NeedsCard cards={this.state.needs} updateCard={this.updateCard} deleteCard={this.deleteCard}></NeedsCard>
@@ -223,13 +235,17 @@ class NeedsComponentNevoias extends React.Component {
                     null}
                 <Divider></Divider>
                 <Typography variant="h6">Delivered needs</Typography>
-                <NeedsCard cards={this.state.doneNeed} deleteCard={this.deleteCard}></NeedsCard>
+                <NeedsCard cards={this.state.doneNeed}  deleteCard={this.deleteCard}></NeedsCard>
+                </MuiThemeProvider>
 
                 <Snackbar open={this.state.snackbar.open} autoHideDuration={1500} onClose={this.handleClose}>
                     <MuiAlert elevation={6} variant="filled" onClose={this.handleClose} severity="success">
                         {this.state.snackbar.message}
                     </MuiAlert>
                 </Snackbar>
+              
+
+                
 
             </React.Fragment>
         )

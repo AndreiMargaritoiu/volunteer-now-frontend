@@ -6,7 +6,6 @@ import {
   TextField,
   Button,
   Grid,
-  Link,
   Container,
   withStyles,
   Avatar,
@@ -43,7 +42,7 @@ class LoginComponent extends React.Component {
             user: JSON.parse(base64.decode(response.data)),
           });
          
-            const user = this.state.user.Id + " " + this.state.user.Type;
+            
 
             localStorage.setItem("authToken", this.state.user.Id);
             localStorage.setItem("userType", this.state.user.Type);

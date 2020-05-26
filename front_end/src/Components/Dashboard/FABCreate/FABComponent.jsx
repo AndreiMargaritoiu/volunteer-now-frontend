@@ -11,7 +11,7 @@ import { divStyle } from "./FABStyles";
 import MuiAlert from '@material-ui/lab/Alert';
 
 
-let userId = localStorage.getItem("authToken");
+
 
 class FABComponent extends React.Component {
 
