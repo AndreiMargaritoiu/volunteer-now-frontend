@@ -64,8 +64,8 @@ const DonationCardDummy = props => {
                             }}
                         
                         variant="contained"
-                        onClick={() => props.changeSum(card, 150)}>
-                    $150
+                        onClick={() => props.changeSum(card, 500)}>
+                    $500
                     </Button>
                 </div>
                 </CardActions>
