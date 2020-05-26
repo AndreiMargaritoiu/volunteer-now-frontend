@@ -9,7 +9,7 @@ import { divStyle } from "./DonationStyles";
 import "./DonationCSS.css";
 import Background from "../../Images/background1.png";
 import MuiAlert from '@material-ui/lab/Alert';
-
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 
 let sum = 0;
 
@@ -115,18 +115,18 @@ class DonationComponent extends React.Component {
                 </Typography>
                             <br></br>
                             <Typography component="h5" variant="h10">
-                                Your involvement is valued and so is your time.
-                                You can either make a quick donation by simply
-                                selecting the desired amount or get into further
-                                details by mentioning the title of the organization
-                                you want to support and letting us know
-                                about the purpose of your donation.
-                </Typography>
+                                Your involvement in terms of financial means will contribute to our
+                                fund, allowing us to ensure coverage of the material needs our
+                                users might stumble upon. You can either select one of  the amounts
+                                displayed on the card bellow:
+                            </Typography>
                             <div style={divStyle}>
                                 <DonationCardDummy classes={classes} cards={this.state.donations} changeSum={this.changeSum}></DonationCardDummy>
                             </div>
                             <div className={classes.form} noValidate>
-                                <Typography>Or specify your amount:</Typography>
+                            <Typography component="h5" variant="h10">
+                                or enter a specific amount you desire:
+                            </Typography>
                                 <TextField id="outlined-basic"
                                     label="Amount"
                                     variant="outlined"
@@ -140,8 +140,24 @@ class DonationComponent extends React.Component {
                                     color="primary"
                                     className={classes.submit}
                                     onClick={this.changeSumUser}>
-                                    Submit
-                </Button>
+                                    Submit donation
+                                </Button>
+                                <Button
+                                href="./homepage"
+                                style={{
+                                    fontSize: "14px",
+                                    color: "#6291b0",
+                                    borderColor: "#6291b0",
+                                    textTransform: "initial",
+                                }}
+                                className={classes.submit7}
+                                fullWidth
+                                variant="outlined"
+                                startIcon={<HomeOutlinedIcon />}
+                            >
+                                {" "}
+                                Home
+                            </Button>
                             </div>
                         </div>
                     </Container>

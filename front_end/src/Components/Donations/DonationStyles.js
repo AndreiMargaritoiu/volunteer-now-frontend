@@ -29,6 +29,12 @@ export const donationStyles = theme => ({
     color: '#FFF'
 } 
   },
+  submit7: {
+    margin: theme.spacing(1, 0, 2),
+    '&:hover':{
+    color: '#FFF'
+}
+  },
   notchedOutline: {
     borderColor: "#6291b0 !important",
   },
