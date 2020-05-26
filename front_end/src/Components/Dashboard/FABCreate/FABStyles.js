@@ -64,7 +64,6 @@ export const fabStyle = theme => ({
 
 export const divStyle = {
     flex: 1,
-    padding: 24,
     backgroundColor: "white",
     borderRadius: "10px",
     padding: "50px",

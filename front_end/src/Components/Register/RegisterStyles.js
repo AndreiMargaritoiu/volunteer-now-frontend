@@ -1,4 +1,4 @@
-import Background from "../../Images/background1.png"
+
 
 
 export const registerStyles = theme => ({
@@ -46,7 +46,6 @@ export const registerStyles = theme => ({
     
     export const divStyle = {
         flex: 1,
-        padding: 24,
         backgroundColor: "white",
         borderRadius: "10px",
         padding: "50px",

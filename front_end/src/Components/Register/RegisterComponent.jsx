@@ -3,7 +3,6 @@ import axiosInstance from "../../Axios/Axios"
 import { REGISTER_API_ENDPOINT } from "../../Utils/utils"
 import { Typography, TextField, Button, Container, withStyles, Avatar, FormControl, InputLabel, Select, MenuItem, Snackbar } from "@material-ui/core"
 import { registerStyles } from "./RegisterStyles";
-import { Redirect } from "react-router-dom";
 import base64 from 'react-native-base64'
 import { divStyle } from "./RegisterStyles";
 import "./RegisterCSS.css";
@@ -94,7 +93,7 @@ class RegisterComponent extends React.Component {
                     this.setState({
                         user: JSON.parse(base64.decode(response.data))
                     })
-                    const user = this.state.user.Id + " " + this.state.user.Type;
+                
                     localStorage.setItem("authToken", this.state.user.Id);
                     localStorage.setItem("userType", this.state.user.Type);
 

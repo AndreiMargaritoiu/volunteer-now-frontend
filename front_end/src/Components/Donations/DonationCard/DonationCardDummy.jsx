@@ -2,9 +2,8 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import { Typography, TextField, Button, Container, withStyles, Avatar, FormControl, InputLabel, Select, MenuItem } from "@material-ui/core"
+import { Typography, Button, withStyles} from "@material-ui/core"
 import { donationCardStyles } from "./DonationsCardStyles";
-import { divStyle } from "./DonationsCardStyles";
 import "./DonationsCardCSS.css"
 
 const DonationCardDummy = props => {
