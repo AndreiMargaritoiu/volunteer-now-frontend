@@ -4,6 +4,12 @@ import { NEEDS_API_ENDPOINT } from "../../Utils/utils"
 import { REGISTER_API_ENDPOINT } from "../../Utils/utils"
 import { Typography, Divider } from "@material-ui/core"
 import NeedsCard from "./NeedsCard"
+import Component from "./NeedsCard";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+
+const muiBaseTheme = createMuiTheme();
+
+
 
 class NeedsComponentVolunteer extends React.Component {
 
@@ -77,7 +83,15 @@ class NeedsComponentVolunteer extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <Typography variant="h4">Volunteer dashboard</Typography>
+                 <MuiThemeProvider 
+            theme={createMuiTheme({
+              typography: {
+                useNextVariants: true,
+              },
+              overrides: Component.getTheme(muiBaseTheme),
+            })}
+          >
+                <Typography variant="h4">Dashboard</Typography>
                 <Divider></Divider>
                 <Typography variant="h6">Assigned needs</Typography>
                 <NeedsCard cards={this.state.assignatedNeeds} dropCard={this.dropCard} doneCard={this.doneCard}></NeedsCard>
@@ -87,7 +101,7 @@ class NeedsComponentVolunteer extends React.Component {
                 <Divider></Divider>
                 <Typography variant="h6">Done needs</Typography>
                 <NeedsCard cards={this.state.doneNeeds}></NeedsCard>
-
+                </MuiThemeProvider>
             </React.Fragment>
         )
     }

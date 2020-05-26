@@ -2,7 +2,7 @@ import React from "react"
 import axiosInstance from "../../Axios/Axios"
 import { USER_EDIT_API_ENDPOINT } from "../../Utils/utils"
 import { USER_DATA_API_ENDPOINT } from "../../Utils/utils"
-import { Typography, TextField, Button, Container, withStyles, Avatar, FormControl, InputLabel, Select, MenuItem } from "@material-ui/core"
+import { Typography, TextField, Button, Container, withStyles, Avatar } from "@material-ui/core"
 import { editUserStyles } from "./EditUserStyles";
 import AppBarComponent from "../AppBar/AppBarComponent";
 import { Redirect } from "react-router-dom";

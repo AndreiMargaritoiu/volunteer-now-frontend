@@ -7,7 +7,7 @@ import axiosInstance from "../../../Axios/Axios"
 import './FABStylesCSS.css';
 import { NEEDS_API_ENDPOINT } from "../../../Utils/utils";
 
-let userId = localStorage.getItem("authToken");
+
 
 class FABComponent extends React.Component {
 
@@ -53,7 +53,7 @@ class FABComponent extends React.Component {
         } else {
             return (
                 <React.Fragment>
-                    <Fab className={classes.fabCreate} color="secondary" aria-label="edit" onClick = {this.openModal} >
+                    <Fab className={classes.fabCreate}  color = "secondary"aria-label="edit" onClick = {this.openModal} >
                         <AddIcon />
                     </Fab>
                     <Container component="main" maxWidth="xs">   

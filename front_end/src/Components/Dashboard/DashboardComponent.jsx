@@ -7,9 +7,7 @@ import { Redirect } from "react-router-dom";
 
 class DashboardComponent extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
+   
 
     isTokenExpired = token => {
         if (token === null) return false;

@@ -9,7 +9,15 @@ export const fabStyle = theme => ({
         bottom: theme.spacing(3),
         right: theme.spacing(3),
         position: 'fixed',
+        backgroundColor: "#d9c1bb",
+        color : "#ffffff",
+        '&:hover':{
+          
+            backgroundColor: '#6291b0',
+            borderColor: "#6291b0"
+        }
     
     }
+
 
 });

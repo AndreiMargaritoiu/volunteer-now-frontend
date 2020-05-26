@@ -1,12 +1,17 @@
 import React from "react"
 import axiosInstance from "../../Axios/Axios"
 import { NEEDS_API_ENDPOINT } from "../../Utils/utils"
-import { Typography, Divider, TextField, Button, Modal, Container, Avatar } from "@material-ui/core"
+import { Typography, Divider, TextField, Button, Modal, Container } from "@material-ui/core"
 import NeedsCard from "./NeedsCard"
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import Component from "./NeedsCard";
+
 
 let Title = "";
 let Description = "";
 let idToUpdate = "";
+const muiBaseTheme = createMuiTheme();
+
 
 class NeedsComponentNevoias extends React.Component {
 
@@ -101,7 +106,15 @@ class NeedsComponentNevoias extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <Typography variant="h4">Nevoias dashboard</Typography>
+                <MuiThemeProvider 
+            theme={createMuiTheme({
+              typography: {
+                useNextVariants: true,
+              },
+              overrides: Component.getTheme(muiBaseTheme),
+            })}
+          >
+                <Typography variant="h4">Dashboard</Typography>
                 <Divider></Divider>
                 <Typography variant="h6">Ongoing needs</Typography>
                 <NeedsCard cards={this.state.needs} updateCard={this.updateCard} deleteCard={this.deleteCard}></NeedsCard>
@@ -176,7 +189,7 @@ class NeedsComponentNevoias extends React.Component {
                 <Divider></Divider>
                 <Typography variant="h6">Delivered needs</Typography>
                 <NeedsCard cards={this.state.doneNeed}  deleteCard={this.deleteCard}></NeedsCard>
-
+                </MuiThemeProvider>
             </React.Fragment>
         )
     }

@@ -9,6 +9,7 @@ export const appBarStyle = theme => ({
       },
       title: {
         flexGrow: 1,
+        flex: 1
       },
       avatar: {
         color: theme.palette.getContrastText(deepOrange[500]),
@@ -16,6 +17,13 @@ export const appBarStyle = theme => ({
         margin: theme.spacing(1),
         marginRight:theme.spacing(-0.5)
 
+      },
+      avatar1: {
+        margin: theme.spacing(0),
+        flexGrow: 1,
+        width: "200px",
+         height: "60px",
       }
+
 
 });
