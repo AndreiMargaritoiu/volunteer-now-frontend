@@ -1,11 +1,12 @@
 import React from "react"
 import axiosInstance from "../../Axios/Axios"
 import { NEEDS_API_ENDPOINT } from "../../Utils/utils"
-import { Typography, Divider, TextField, Button, Modal, Container, Avatar, withStyles } from "@material-ui/core"
+import { Typography, Divider, TextField, Button, Modal, Container, Avatar, withStyles, Snackbar } from "@material-ui/core"
 import NeedsCard from "./NeedsCard"
 import Logo from "../../Images/logo2.png";
 import { divStyle } from "./Needs1Styles";
 import { needs1Style } from "./Needs1Styles";
+import MuiAlert from '@material-ui/lab/Alert';
 
 let Title = "";
 let Description = "";
@@ -27,7 +28,11 @@ class NeedsComponentNevoias extends React.Component {
             doneNeed: [{
                 "title": "default",
                 "description": "default"
-            }]
+            }],
+            snackbar: {
+                open: false,
+                message: ""
+            }
         }
     }
 
@@ -51,7 +56,6 @@ class NeedsComponentNevoias extends React.Component {
 
     updateCard = (cardid) => {
         this.setState({ openModal: true })
-        console.log("udpate apasat")
         axiosInstance.get(NEEDS_API_ENDPOINT + '/getNeed/' + cardid).then(response => {
             this.setState({
                 need: response.data
@@ -69,13 +73,26 @@ class NeedsComponentNevoias extends React.Component {
 
             this.refreshCards()
             this.setState({ show: false });
+            this.setState({
+                snackbar: {
+                    open: true,
+                    message: "Succesfully updated"
+                }
+            })
         }).then(() => this.setState({ openModal: false }))
     }
 
     deleteCard = (cardid) => {
         axiosInstance.delete(NEEDS_API_ENDPOINT + "/" + cardid).then(() => {
             this.refreshCards()
+            this.setState({
+                snackbar: {
+                    open: true,
+                    message: "Succesfully deleted"
+                }
+            })
         })
+
     }
 
     setTitle = (event) => {
@@ -104,6 +121,14 @@ class NeedsComponentNevoias extends React.Component {
 
     closeModal = () => {
         this.setState({ openModal: false });
+    }
+
+    handleClose = () => {
+        this.setState({
+            snackbar: {
+                open: false
+            }
+        })
     }
 
     render() {
@@ -179,10 +204,10 @@ class NeedsComponentNevoias extends React.Component {
                                                     color: "#6291b0",
                                                     borderColor: "#6291b0",
                                                     textTransform: "initial",
-                                                  }}
-                                                  className={classes.submit2}  
+                                                }}
+                                                className={classes.submit2}
                                                 fullWidth
-                                                variant= "outlined"
+                                                variant="outlined"
                                                 onClick={this.closeModal}
                                             >
                                                 Cancel
@@ -199,6 +224,12 @@ class NeedsComponentNevoias extends React.Component {
                 <Divider></Divider>
                 <Typography variant="h6">Delivered needs</Typography>
                 <NeedsCard cards={this.state.doneNeed} deleteCard={this.deleteCard}></NeedsCard>
+
+                <Snackbar open={this.state.snackbar.open} autoHideDuration={1500} onClose={this.handleClose}>
+                    <MuiAlert elevation={6} variant="filled" onClose={this.handleClose} severity="success">
+                        {this.state.snackbar.message}
+                    </MuiAlert>
+                </Snackbar>
 
             </React.Fragment>
         )
