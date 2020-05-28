@@ -60,8 +60,8 @@ export const tileData = [
              image : Person,
              title : "Person in Need",
              short : "We are here to help you get through difficult times. Tell us your needs and we'll be handling it in no time.",
-             long : "Sign up and become a normal user to add your needs so we can see them and proceed to help as fast as possible. "
-             + "We will help with: \n - Running errands \n - Delivery services \n - Pet support"
+             long : "Sign up to let us know what you need so we can see them and proceed to help as fast as possible. "
+             + "\n We will help with: \n - Running errands \n - Delivery services \n - Pet support"
   },
 ];
 

@@ -142,7 +142,7 @@ class FABComponent extends React.Component {
                                                 Create Need
                                             </Button>
                                             <Divider></Divider>
-                                            <Button className={classes.submit}
+                                            <Button className={classes.submit2}
                                                 onClick={this.closeModal}
                                                 style={{
                                                     fontSize: "12px",
@@ -150,7 +150,7 @@ class FABComponent extends React.Component {
                                                     borderColor: "#6291b0",
                                                     textTransform: "initial",
                                                 }}
-                                                className={classes.submit2}
+                                              
                                                 fullWidth
                                                 variant="outlined"
                                             >

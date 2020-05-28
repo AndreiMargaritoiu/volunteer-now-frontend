@@ -243,7 +243,7 @@ class RegisterComponent extends React.Component {
                                 required
                                 fullWidth
                                 id="adress"
-                                label="Address"
+                                label="City"
                                 name="adress"
                                 autoComplete="address"
                                 onChange={this.getAddress}
