@@ -9,10 +9,7 @@ import Logo from "../../Images/logo8.png";
 
 class AppBarComponent extends React.Component {
 
-    // constructor(props) {
-    //     super(props);
-       
-    // }
+
 
     update = () => {
         window.location.href = "/user/edit"   
@@ -39,7 +36,7 @@ class AppBarComponent extends React.Component {
                 <Toolbar>
                    
                     <Typography variant="h6" className={classes.title}>
-                        <Avatar edge="start"  src ={Logo} className={classes.avatar1} onClick={this.goHome} ></Avatar>
+                        <Avatar edge="start"  src ={Logo} className={classes.avatar1} onClick={this.goHome} style ={{cursor:'pointer'}}></Avatar>
                     </Typography>
                     <Button color="inherit"onClick={this.donate} className={classes.submit}>Donate</Button>
                     <Button color="inherit" onClick={this.update} className={classes.submit}>Update Profile</Button>

@@ -149,6 +149,7 @@ class NeedsComponentNevoias extends React.Component {
           >
                 <Typography variant="h4">Dashboard</Typography>
                 <Divider></Divider>
+                
                 <Typography variant="h6">Ongoing needs</Typography>
                 <NeedsCard cards={this.state.needs} updateCard={this.updateCard} deleteCard={this.deleteCard}></NeedsCard>
                 {this.state.openModal ?
@@ -217,7 +218,7 @@ class NeedsComponentNevoias extends React.Component {
                                                     borderColor: "#6291b0",
                                                     textTransform: "initial",
                                                 }}
-                                                className={classes.submit2}
+                                                
                                                 fullWidth
                                                 variant="outlined"
                                                 onClick={this.closeModal}
@@ -243,6 +244,7 @@ class NeedsComponentNevoias extends React.Component {
                         {this.state.snackbar.message}
                     </MuiAlert>
                 </Snackbar>
+               
               
 
                 

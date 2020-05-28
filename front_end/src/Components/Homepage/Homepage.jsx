@@ -8,6 +8,7 @@ import { stylesHomepage } from "./HomePageStyle";
 import Grid from "@material-ui/core/Grid";
 import StickyFooter from "./StickyFooter";
 import { RecipeReviewCard } from "./HomepageCard";
+import SimpleCard from "./PurposeCard"
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -99,7 +100,12 @@ class Homepage extends React.Component {
           </div>
 
           <div class="brmedium"></div>
+         
+          <Grid container justify = "center">
+          <SimpleCard justify = "center"/>
+          </Grid>
           <div class="brsmall"></div>
+          <div class="brmedium"></div>
           <Grid container direction="row" justify="center" alignItems="center">
             {tileData.map((tile) => (
               <Grid item spacing={3}>
