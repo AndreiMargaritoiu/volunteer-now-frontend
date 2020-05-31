@@ -211,7 +211,7 @@ class NeedsComponentNevoias extends React.Component {
                                                 Update Need
                                         </Button>
                                             <Divider></Divider>
-                                            <Button className={classes.submit}
+                                            <Button className={classes.submit2}
                                                 style={{
                                                     fontSize: "12px",
                                                     color: "#6291b0",
