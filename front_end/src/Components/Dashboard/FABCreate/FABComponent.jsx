@@ -65,8 +65,8 @@ class FABComponent extends React.Component {
                 open: false,
                 message: ""
             },
-            openModal:false
-            
+            openModal: false
+
         })
         window.location.reload(false)
 
@@ -88,9 +88,10 @@ class FABComponent extends React.Component {
                         <AddIcon />
                     </Fab>
                     <Container component="main" maxWidth="xs">
-                        <div className={classes.paper} style={divStyle}>
+                      
 
                             <Modal
+                                className={classes.paper}
                                 open={this.state.openModal}
                                 aria-labelledby="simple-modal-title"
                                 aria-describedby="simple-modal-description"
@@ -150,7 +151,7 @@ class FABComponent extends React.Component {
                                                     borderColor: "#6291b0",
                                                     textTransform: "initial",
                                                 }}
-                                              
+
                                                 fullWidth
                                                 variant="outlined"
                                             >
@@ -161,7 +162,7 @@ class FABComponent extends React.Component {
                                 </div>
 
                             </Modal>
-                        </div>
+                    
                     </Container>
                     <Snackbar open={this.state.snackbar.open} autoHideDuration={1000} onClose={this.handleClose}>
                         <MuiAlert elevation={6} variant="filled" onClose={this.handleClose} severity="success">
