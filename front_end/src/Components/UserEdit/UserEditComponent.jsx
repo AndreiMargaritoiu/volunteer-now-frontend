@@ -50,7 +50,7 @@ class UserEditComponent extends React.Component {
         this.setState({
             snackbar: {
                 open: true,
-                message: "Modified with success"
+                message: "Modified successfully."
             }
         })
      
@@ -115,7 +115,7 @@ class UserEditComponent extends React.Component {
         Telephone = event.target.value;
         this.setState({
             user: {
-                firstname: event.target.value,
+                firstname: Firstname,
                 lastname: Lastname,
                 email: Email,
                 telephone: event.target.value,
@@ -128,7 +128,7 @@ class UserEditComponent extends React.Component {
         Address = event.target.value;
         this.setState({
             user: {
-                firstname: event.target.value,
+                firstname: Firstname,
                 lastname: Lastname,
                 email: Email,
                 telephone: Telephone,
@@ -243,7 +243,7 @@ class UserEditComponent extends React.Component {
                                     required
                                     fullWidth
                                     id="adress"
-                                    label="Address"
+                                    label="City"
                                     name="adress"
                                     autoComplete="address"
                                     value={this.state.user.address}
